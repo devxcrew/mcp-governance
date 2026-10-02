@@ -1,44 +1,38 @@
-# MCP Governance
+# mcp-governance
 
-A read-only developer guidance service for all Codexsun repositories. It does not enforce approvals or block application work.
+Own central developer guidance, read-only MCP resources, client connection, and workspace maintenance routing.
+
+Use the sibling workspace layout. Shared framework and UI keep their existing public exports and build contracts.
 
 ## Run
 
-Use Node 26.10 or newer. Copy .env.example to .env and set a random MCP_SERVER_SECRET of at least 32 characters. Keep the secret in ignored files.
+Use Node 26.10 or newer and the package manifest requirements. Clone the sibling tools and mcp-governance repositories along with this repository.
 
 ```powershell
 npm install
 npm run verify
 npm run dev
-# Or use npm run build followed by npm start.
 ```
 
-The local endpoint is http://127.0.0.1:7310/mcp. The server accepts stateless MCP Streamable HTTP POST requests. It uses the official TypeScript SDK and native Node HTTP. It binds only to a loopback address. Remote hosting requires a separate HTTPS and access design.
+## Guidance and agent records
 
-## Connection
+Common guidance and audits live in assist. Repository history lives in agent. The local read-only HTTP MCP endpoint is http://127.0.0.1:7310/mcp. Client templates are in assist/mcp.json. Read AGENT.md and agent/SKILLS.md, TASK.md, PLAN.md, and CHANGELOG.md. AGENTS.md is an agent discovery pointer.
 
-Configure MCP_SERVER_URL, MCP_SERVER_SECRET, APP_ID, and APP_USER in the consuming repository .env. Supply Authorization: Bearer <secret>, X-App-Id, and X-App-User headers in an HTTP MCP client. App ID and app user identify the request context. The shared secret authenticates the client connection. These headers do not provide business user authentication or tenant authorization.
+Configure MCP_SERVER_URL, MCP_SERVER_SECRET, APP_ID, and APP_USER through .env.example. Keep the secret in ignored .env. Run npm run mcp:connect to retrieve instructions or npm run mcp:verify for a strict connection test. Connection failures do not gate application work. Editor registration uses the central connection template and remains client-specific.
 
-Run npm run mcp:connect in any wired repository to initialize MCP and retrieve its working instructions. Network or configuration failures print the local fallback and exit successfully. Run npm run mcp:verify for a strict connection test that exits nonzero on failure. These commands are never connected to dev, build, check, or application startup.
+## Maintenance
 
-## Resources and tools
+```powershell
+npm run version-bump -- --dry-run
+npm run version-bump -- --title "Release title" --note "Change details"
+npm run check:versions
+npm run fix:line-endings
+npm run lines:check
+npm run github:now -- --dry-run
+```
 
-Resources: governance://workspace, governance://ui, governance://code-standard, governance://repository, and governance://app-setup. Markdown source lives in assist/guides.
+Version bumps update package.json, package-lock.json, and agent/CHANGELOG.md. Record changes and validation before committing. The commit subject is #<patch> - <release title>, for example #4 - Common MCP governance guidance. Review the files before an authorized npm run github:now. Do not bump again during GitHub review if the release version is already updated.
 
-Tools: get_working_instructions, inspect_repository, and get_ui_catalog. Repository inspection reads only allowlisted package.json files in the sibling workspace. No environment values, filesystem writes, commits, or shell execution are available through MCP. Unknown app IDs can read common instructions. Repository inspection stays limited to known repositories.
+The workspace maintenance entry point delegates to shared/tools. The installed npm tools version remains pinned at 0.1.3 until a release with agent changelog support is published. GitHub source releases use github:now. Npm publication requires separate authorization.
 
-The UI catalog reports current public imports. Read component source and UIUX examples for prop details. The older UI design-system MCP helper remains owned by UI.
-
-## Workspace layout
-
-Keep this checkout at shared/mcp-governance alongside shared/framework, shared/ui, shared/tools, projects/cxsun, and devkits/uiux. The server resolves this layout from its installation directory. Client probes are copied to assist/mcp-connect.mjs so they work without the server checkout and fall back offline. Update these copies when changing the common probe.
-
-## Plan and verification
-
-1. Define common guidance and allowlisted repository information.
-2. Expose resources and read-only tools through authenticated Streamable HTTP.
-3. Add independent advisory probes and environment examples to every repository.
-4. Verify protocol initialization, resources, tools, identity metadata, authentication, and offline fallback.
-5. Record releases and synchronize each GitHub repository.
-
-Source: https://github.com/devxcrew/mcp-governance. SDK reference: https://github.com/modelcontextprotocol/typescript-sdk/tree/v1.x.
+The server uses loopback HTTP at http://127.0.0.1:7310/mcp. Configure a random secret of at least 32 characters in ignored .env. Commands require the shared tools checkout for workspace maintenance. Runtime MCP reads package metadata and common guide files only.

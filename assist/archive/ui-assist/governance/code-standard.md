@@ -4,4 +4,4 @@ Keep functions focused and files below 300 lines when practical. Use TypeScript 
 
 Keep secrets in ignored environment files. Expose only explicit public frontend configuration. Validate request input and enforce permissions on the server. Frontend navigation flags do not authorize data access. Scope every business query to its authenticated organization.
 
-Use LF for source files and preserve binary files. Run the repository check command. Add tests for meaningful behavior and defects. Respect repository-specific AGENT.md rules and direct user instructions. Guidance is advisory.
+Use LF for source files and preserve binary files. Run the repository check command. Add tests for meaningful behavior and defects. Respect repository-specific AGENTS.md rules and direct user instructions. Guidance is advisory.

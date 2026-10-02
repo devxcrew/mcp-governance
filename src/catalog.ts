@@ -34,10 +34,35 @@ export class GovernanceCatalog {
       name: manifest.name,
       version: manifest.version,
       scripts: manifest.scripts ?? {},
+      agent: await this.agentNotes(name),
       exports: manifest.exports ?? {},
       dependencies: manifest.dependencies ?? {},
       devDependencies: manifest.devDependencies ?? {}
     };
+  }
+
+  private async agentNotes(name: Repository) {
+    const files = [
+      "AGENT.md",
+      "agent/SKILLS.md",
+      "agent/TASK.md",
+      "agent/PLAN.md",
+      "agent/CHANGELOG.md"
+    ];
+    const notes = await Promise.all(
+      files.map(async (file) => {
+        try {
+          return [
+            file,
+            await readFile(resolve(this.workspace, repositories[name], file), "utf8")
+          ] as const;
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
+          throw error;
+        }
+      })
+    );
+    return Object.fromEntries(notes.filter((note) => note !== null));
   }
 
   async instructions(appId: string, appUser: string) {

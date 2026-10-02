@@ -55,13 +55,13 @@ export async function runConnection(env, { strict = false, timeout } = {}) {
     return 0;
   } catch (error) {
     console.info(
-      `Governance guidance unavailable: ${error.message} Continue with AGENT.md and agent/SKILLS.md.`
+      `Governance guidance unavailable: ${error.message} Continue with AGENTS.md and assist/GOVERNANCE.md.`
     );
     return strict ? 1 : 0;
   }
 }
 
-export async function runCli() {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   let local = {};
   try {
     local = parseEnv(readFileSync(resolve(".env"), "utf8"));
@@ -69,9 +69,8 @@ export async function runCli() {
     if (error.code !== "ENOENT")
       console.info("Local environment file unavailable. Using process environment.");
   }
-  return runConnection({ ...local, ...process.env }, { strict: process.argv.includes("--strict") });
-}
-
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  process.exitCode = await runCli();
+  process.exitCode = await runConnection(
+    { ...local, ...process.env },
+    { strict: process.argv.includes("--strict") }
+  );
 }

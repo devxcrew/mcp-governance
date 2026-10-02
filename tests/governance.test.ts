@@ -16,6 +16,11 @@ const workspace = mkdtempSync(resolve(tmpdir(), "governance-test-"));
 for (const [name, path] of Object.entries(repositories)) {
   const directory = resolve(workspace, path);
   mkdirSync(directory, { recursive: true });
+  mkdirSync(resolve(directory, "agent"));
+  writeFileSync(
+    resolve(directory, "agent/TASK.md"),
+    "# Current task\n\nFixture repository task.\n"
+  );
   writeFileSync(
     resolve(directory, "package.json"),
     JSON.stringify({
@@ -62,6 +67,7 @@ test("SDK client initializes and reads resources and repository/UI instructions"
     assert.equal(data.appId, "cxsun");
     assert.equal(data.appUser, "developer");
     assert.equal(data.repository.name, "@codexsun/cxsun");
+    assert.match(data.repository.agent["agent/TASK.md"], /Fixture repository task/);
     assert.equal(data.mode, "advisory");
     const catalog = await client.callTool({ name: "get_ui_catalog", arguments: {} });
     assert.match((catalog.content as { text: string }[])[0].text, /\.\/components\/\*/);
