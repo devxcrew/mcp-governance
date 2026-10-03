@@ -1,6 +1,6 @@
 # Repository plan
 
-1. Keep shared guidance in mcp-governance.
-2. Maintain local task, plan, skill notes, and release history.
-3. Verify MCP instructions, maintenance commands, and repository behavior.
-4. Maintain this repository within its documented ownership and add features only when requested.
+1. Maintain the five shared guides and the MCP client template.
+2. Keep app-specific instructions in their owning repositories.
+3. Verify resource retrieval and live connections after changes.
+4. Preserve release history in `agent/CHANGELOG.md`.

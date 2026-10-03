@@ -2,4 +2,8 @@ node_modules
 dist
 package-lock.json
 .env
-assist/archive
+
+.wrangler/
+cloud/generated/
+worker-configuration.d.ts
+.dev.vars

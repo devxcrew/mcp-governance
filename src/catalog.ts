@@ -1,18 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-
-export const repositories = {
-  cxsun: "projects/cxsun",
-  framework: "shared/framework",
-  ui: "shared/ui",
-  uiux: "devkits/uiux",
-  tools: "shared/tools",
-  "mcp-governance": "shared/mcp-governance"
-} as const;
-
-export const guides = ["workspace", "ui", "code-standard", "repository", "app-setup"] as const;
-export type Guide = (typeof guides)[number];
-export type Repository = keyof typeof repositories;
+import { publicGovernanceManifest } from "./manifest.js";
+import { repositories, guides, type Guide, type Repository } from "./contracts.js";
+export { repositories, guides } from "./contracts.js";
 
 export class GovernanceCatalog {
   constructor(
@@ -34,6 +24,7 @@ export class GovernanceCatalog {
       name: manifest.name,
       version: manifest.version,
       scripts: manifest.scripts ?? {},
+      governance: await this.governanceManifest(name),
       agent: await this.agentNotes(name),
       exports: manifest.exports ?? {},
       dependencies: manifest.dependencies ?? {},
@@ -43,10 +34,12 @@ export class GovernanceCatalog {
 
   private async agentNotes(name: Repository) {
     const files = [
-      "AGENT.md",
+      "AGENTS.md",
       "agent/SKILLS.md",
       "agent/TASK.md",
       "agent/PLAN.md",
+      "agent/TODOS.md",
+      "agent/AUDIT.md",
       "agent/CHANGELOG.md"
     ];
     const notes = await Promise.all(
@@ -65,6 +58,25 @@ export class GovernanceCatalog {
     return Object.fromEntries(notes.filter((note) => note !== null));
   }
 
+  private async governanceManifest(name: Repository) {
+    try {
+      return publicGovernanceManifest(
+        JSON.parse(
+          await readFile(
+            resolve(this.workspace, repositories[name], "codexsun.governance.json"),
+            "utf8"
+          )
+        ),
+        name
+      );
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
+      if (error instanceof SyntaxError)
+        return { status: "invalid", warning: "App manifest is not valid JSON." };
+      throw error;
+    }
+  }
+
   async instructions(appId: string, appUser: string) {
     const repository = Object.hasOwn(repositories, appId)
       ? await this.inspect(appId as Repository)
@@ -76,6 +88,7 @@ export class GovernanceCatalog {
       appId,
       appUser,
       mode: "advisory",
+      capabilities: { actionApproval: false, commitReservation: false, remoteEnforcement: false },
       repository,
       instructions: content.join("\n\n")
     };

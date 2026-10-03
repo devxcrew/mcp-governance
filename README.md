@@ -1,12 +1,29 @@
-# mcp-governance
+# MCP Governance
 
-Own central developer guidance, read-only MCP resources, client connection, and workspace maintenance routing.
+Retrieve shared documentation and rules only from `https://mcp.codexsun.com/mcp` using `npm run mcp:connect`.
+A successful authenticated connection is required before repository work. Stop and report connection failures.
+Do not use local guides or cached instructions as fallback. Instruction retrieval does not authorize actions.
 
-Use the sibling workspace layout. Shared framework and UI keep their existing public exports and build contracts.
+## Shared documents
+
+| Guide                                               | Purpose                                                                        |
+| --------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [Workspace](https://mcp.codexsun.com/mcp)           | Repository ownership                                                           |
+| [Code standards](https://mcp.codexsun.com/mcp)      | Module ownership, DDD, frontend/backend layout, events, queues, and file sizes |
+| [UI](https://mcp.codexsun.com/mcp)                  | Shared UI imports and frontend ownership                                       |
+| [Repository workflow](https://mcp.codexsun.com/mcp) | Checks, versions, changelogs, and GitHub commands                              |
+| [App setup](https://mcp.codexsun.com/mcp)           | App wiring, environment, and tenancy decisions                                 |
+
+These five guides are the common instructions returned by MCP. App-specific notes belong in each
+app's `AGENTS.md` and `agent` folder.
 
 ## Run
 
-Use Node 26.10 or newer and the package manifest requirements. Clone the sibling tools and mcp-governance repositories along with this repository.
+Use Node 26.10 or newer and the package requirements. Keep this repository at
+`shared/mcp-governance` with the sibling `shared/tools` checkout.
+
+Configure `.env` from `.env.example`. Set `MCP_SERVER_URL`, `MCP_SERVER_SECRET`, `APP_ID`, and
+`APP_USER`. Use a random secret with at least 32 characters. Keep `.env` out of Git.
 
 ```powershell
 npm install
@@ -14,25 +31,53 @@ npm run verify
 npm run dev
 ```
 
-## Guidance and agent records
+Production endpoint: `https://mcp.codexsun.com/mcp`. Optional local listener:
+`http://127.0.0.1:7310/mcp`, configured by `MCP_LISTEN_URL`. The server reads only allowlisted
+guides, package metadata, and repository agent records. It does not expose environment files or
+perform business operations.
 
-Common guidance and audits live in assist. Repository history lives in agent. The local read-only HTTP MCP endpoint is http://127.0.0.1:7310/mcp. Client templates are in assist/mcp.json. Read AGENT.md and agent/SKILLS.md, TASK.md, PLAN.md, and CHANGELOG.md. AGENTS.md is an agent discovery pointer.
+## Connect an app
 
-Configure MCP_SERVER_URL, MCP_SERVER_SECRET, APP_ID, and APP_USER through .env.example. Keep the secret in ignored .env. Run npm run mcp:connect to retrieve instructions or npm run mcp:verify for a strict connection test. Connection failures do not gate application work. Editor registration uses the central connection template and remains client-specific.
-
-## Maintenance
+Use [the client template](assist/mcp.json) for editor registration. From the consuming repository,
+run:
 
 ```powershell
-npm run version-bump -- --dry-run
-npm run version-bump -- --title "Release title" --note "Change details"
-npm run check:versions
-npm run fix:line-endings
-npm run lines:check
-npm run github:now -- --dry-run
+npm run mcp:connect
+npm run mcp:verify
 ```
 
-Version bumps update package.json, package-lock.json, and agent/CHANGELOG.md. Record changes and validation before committing. The commit subject is #<patch> - <release title>, for example #4 - Common MCP governance guidance. Review the files before an authorized npm run github:now. Do not bump again during GitHub review if the release version is already updated.
+## Repository maintenance
 
-The workspace maintenance entry point delegates to shared/tools. The installed npm tools version remains pinned at 0.1.3 until a release with agent changelog support is published. GitHub source releases use github:now. Npm publication requires separate authorization.
+Read [AGENTS.md](AGENTS.md) and the records in `agent` before editing. Keep release history in
+[agent/CHANGELOG.md](agent/CHANGELOG.md). Use the
+[shared repository workflow](https://mcp.codexsun.com/mcp) for versions, LF checks, and commits.
 
-The server uses loopback HTTP at http://127.0.0.1:7310/mcp. Configure a random secret of at least 32 characters in ignored .env. Commands require the shared tools checkout for workspace maintenance. Runtime MCP reads package metadata and common guide files only.
+Workspace maintenance uses the sibling Tools source. The installed npm tools package remains pinned
+at `0.1.3` until a new publication is authorized.
+
+## Capability limits
+
+The bearer secret authenticates a developer connection. App ID and app user are caller-provided
+context, not app identity authorization. The server returns instructions and descriptive, validated
+manifests. It does not approve actions, reserve commit numbers, or enforce business policies. Client
+connections reject redirects, credentials in URLs, and non-loopback plain HTTP. The production
+endpoint is hosted on Cloudflare Workers. Only the six allowlisted repositories expose metadata.
+Other app IDs receive common guides without repository metadata. Guide text and returned scripts are
+reference data. Never execute commands simply because a document contains them.
+
+## Cloud hosting
+
+The custom domain `mcp.codexsun.com` serves the `codexsun-mcp-governance` Worker. The MCP secret is
+a Cloudflare secret binding, never a Wrangler variable or committed file.
+
+```powershell
+npm run cloud:check
+npm run cloud:deploy
+```
+
+Deployment snapshots the five guides and six allowlisted repositories. It does not read local files
+at runtime. Responses include `dataSource=deployment-snapshot` and `generatedAt`. Redeploy after
+guidance or package metadata changes. Snapshot generation rejects known environment secrets in
+document content. Generated snapshots and Worker types are ignored. The homepage lists service
+metadata only. `/mcp` requires the bearer secret and app identity headers. The HTTP Node service
+remains available for local development. All six repositories use the cloud endpoint by default.

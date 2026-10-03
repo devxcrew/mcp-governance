@@ -1,9 +1,9 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { GovernanceCatalog, guides, repositories } from "./catalog.js";
+import { type GovernanceReader, guides, repositories } from "./contracts.js";
 
 export function createGovernanceMcp(
-  catalog: GovernanceCatalog,
+  catalog: GovernanceReader,
   appId: string,
   appUser: string,
   version: string
@@ -12,7 +12,7 @@ export function createGovernanceMcp(
     { name: "codexsun-mcp-governance", version },
     {
       instructions:
-        "Read governance://workspace and call get_working_instructions before repository work. Guidance is advisory and never blocks application startup."
+        "Read governance://workspace and call get_working_instructions before repository work. Retrieve live guidance before repository work. Stop on connection failure; do not use local or cached fallback."
     }
   );
   for (const name of guides) {
@@ -62,7 +62,7 @@ export function createGovernanceMcp(
   server.registerTool(
     "get_ui_catalog",
     {
-      description: "Get live shared UI exports and their usage guide.",
+      description: "Get shared UI exports and their usage guide from the configured catalog.",
       inputSchema: {},
       annotations: {
         readOnlyHint: true,

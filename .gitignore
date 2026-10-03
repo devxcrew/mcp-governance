@@ -6,3 +6,8 @@ dist/
 .idea/
 .vscode/
 *.log
+
+.wrangler/
+cloud/generated/
+worker-configuration.d.ts
+.dev.vars

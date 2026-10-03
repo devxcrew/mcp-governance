@@ -4,8 +4,14 @@ import { parseEnv } from "node:util";
 import { fileURLToPath } from "node:url";
 
 export async function connectGovernance(env, options = {}) {
-  const url = new URL(env.MCP_SERVER_URL ?? "http://127.0.0.1:7310/mcp");
+  const url = new URL(env.MCP_SERVER_URL ?? "https://mcp.codexsun.com/mcp");
+  if (url.href !== "https://mcp.codexsun.com/mcp")
+    throw new Error("Only https://mcp.codexsun.com/mcp is allowed.");
   if (!["http:", "https:"].includes(url.protocol)) throw new Error("Invalid MCP server URL.");
+  if (url.username || url.password || url.search || url.hash || url.pathname !== "/mcp")
+    throw new Error("MCP server URL must use /mcp without credentials, query, or fragment.");
+  if (url.protocol === "http:" && !["localhost", "127.0.0.1", "[::1]"].includes(url.hostname))
+    throw new Error("Remote MCP servers require HTTPS.");
   if (!env.MCP_SERVER_SECRET || !env.APP_ID || !env.APP_USER)
     throw new Error("Configure MCP_SERVER_SECRET, APP_ID, and APP_USER in .env.");
   const headers = {
@@ -18,8 +24,9 @@ export async function connectGovernance(env, options = {}) {
   async function request(id, method, params) {
     const response = await fetch(url, {
       method: "POST",
+      redirect: "error",
       headers,
-      signal: AbortSignal.timeout(options.timeout ?? 5000),
+      signal: AbortSignal.timeout(options.timeout ?? 15000),
       body: JSON.stringify({ jsonrpc: "2.0", id, method, params })
     });
     if (!response.ok) throw new Error(`MCP connection returned HTTP ${response.status}.`);
@@ -35,8 +42,9 @@ export async function connectGovernance(env, options = {}) {
   headers["MCP-Protocol-Version"] = initialized.protocolVersion;
   const notification = await fetch(url, {
     method: "POST",
+    redirect: "error",
     headers,
-    signal: AbortSignal.timeout(options.timeout ?? 5000),
+    signal: AbortSignal.timeout(options.timeout ?? 15000),
     body: JSON.stringify({ jsonrpc: "2.0", method: "notifications/initialized" })
   });
   if (!notification.ok) throw new Error(`MCP initialization returned HTTP ${notification.status}.`);
@@ -45,19 +53,29 @@ export async function connectGovernance(env, options = {}) {
     arguments: {}
   });
   if (result.isError) throw new Error("MCP instructions could not be retrieved.");
-  return JSON.parse(result.content.find((item) => item.type === "text").text);
+  const content = result.content?.find((item) => item.type === "text");
+  if (!content) throw new Error("MCP instructions response is missing.");
+  const instructions = JSON.parse(content.text);
+  if (
+    instructions.appId !== env.APP_ID ||
+    instructions.appUser !== env.APP_USER ||
+    typeof instructions.instructions !== "string" ||
+    !instructions.instructions.trim()
+  )
+    throw new Error("MCP instructions do not match the requesting app.");
+  return instructions;
 }
 
-export async function runConnection(env, { strict = false, timeout } = {}) {
+export async function runConnection(env, { timeout } = {}) {
   try {
     const result = await connectGovernance(env, { timeout });
     console.info(JSON.stringify(result, null, 2));
     return 0;
   } catch (error) {
     console.info(
-      `Governance guidance unavailable: ${error.message} Continue with AGENT.md and agent/SKILLS.md.`
+      `Live governance unavailable: ${error.message} Stop repository work and restore the cloud connection.`
     );
-    return strict ? 1 : 0;
+    return 1;
   }
 }
 
@@ -69,7 +87,12 @@ export async function runCli() {
     if (error.code !== "ENOENT")
       console.info("Local environment file unavailable. Using process environment.");
   }
-  return runConnection({ ...local, ...process.env }, { strict: process.argv.includes("--strict") });
+  const env = { ...local, ...process.env };
+  if (env.MCP_SERVER_URL && env.MCP_SERVER_URL !== "https://mcp.codexsun.com/mcp") {
+    console.error("MCP_SERVER_URL must be https://mcp.codexsun.com/mcp.");
+    return 1;
+  }
+  return runConnection(env, { strict: true });
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

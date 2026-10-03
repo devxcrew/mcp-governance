@@ -1,9 +1,37 @@
-# Working with repositories
+# Repository workflow
 
-Read AGENT.md, README.md, package.json, and relevant source before edits. Inspect git status and preserve existing user changes. Keep each repository independent. Use @devxcrew/tools for version, changelog, line ending, and GitHub commands.
+## Before edits
 
-Version updates align package.json, package-lock.json, and agent/CHANGELOG.md. Preserve historical entries. Commit references use the patch number, for example #4 for 0.1.4. Commit and push only within the requested scope. Publishing needs explicit user authorization.
+1. Read `AGENTS.md`, `README.md`, `package.json`, and the relevant source.
+2. Check Git status and preserve existing user changes.
+3. Keep repository ownership and release versions independent.
 
-Run npm run check. Cxsun and UIUX provide npm run verify for builds and verification. Framework is built through Cxsun preparation. Generic tools package:check requires dist/src exports and does not fit source-exported UI. Legacy clone/container commands do not fit the Cxsun layout.
+Shared guidance lives in MCP Governance. Each repository owns its `agent` task, plan, skills, and
+changelog records.
 
-Use npm run version-bump with --title and --note. Run npm run fix:line-endings and npm run lines:check. Run checks and review npm run github:now -- --dry-run. Commit messages use #<patch> - <release title>. Do not request an additional bump when the release is already prepared. Common guidance is centralized; local agent folders own task, plan, skills, and changelog records.
+## Checks
+
+Run `npm run check`. Cxsun and UIUX also provide `npm run verify`. Cxsun preparation builds
+Framework.
+
+The generic tools `package:check` expects `dist/src` exports. It does not fit source-exported UI.
+Legacy clone and container commands do not fit the Cxsun layout.
+
+## Release
+
+Use `@devxcrew/tools` through the repository scripts:
+
+1. Run `npm run version-bump` with `--title` and `--note`.
+2. Keep `package.json`, `package-lock.json`, and `agent/CHANGELOG.md` aligned. Preserve history.
+3. Run `npm run fix:line-endings` and `npm run lines:check`.
+4. Run repository checks and review `npm run github:now -- --dry-run`.
+5. Commit and push only within the requested scope.
+
+Commit subjects use `#<patch> - <release title>`. For version `0.1.5`, the reference is `#5`. Do not
+bump again when the release is prepared. Npm publication requires explicit authorization.
+
+## Architecture review
+
+Follow [code and module standards](code-standard.md). Review owner folders, public contracts,
+frontend/backend separation, and event or queue scope before completing changes. Keep files below
+700 lines when practical. Review 700–900 lines and split above 900 within the module.

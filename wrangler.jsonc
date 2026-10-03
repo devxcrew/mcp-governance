@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "codexsun-mcp-governance",
+  "account_id": "a68cf61bf5bae3f83ddb7765dc29a835",
+  "main": "cloud/worker.ts",
+  "compatibility_date": "2026-10-03",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "mcp.codexsun.com", "custom_domain": true }],
+  "vars": { "PUBLIC_ORIGIN": "https://mcp.codexsun.com" },
+  "secrets": { "required": ["MCP_SERVER_SECRET"] },
+  "observability": { "enabled": true }
+}
