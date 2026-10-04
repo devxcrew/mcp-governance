@@ -1,6 +1,13 @@
 export const repositories = {
   cxsun: "projects/cxsun",
+  billing: "projects/billing",
+  crm: "projects/crm",
+  qcafe: "projects/qcafe",
+  ecommerce: "projects/ecommerce",
+  intergrid: "projects/intergrid",
   framework: "shared/framework",
+  platform: "shared/platform",
+  email: "addons/email",
   ui: "shared/ui",
   uiux: "devkits/uiux",
   tools: "shared/tools",

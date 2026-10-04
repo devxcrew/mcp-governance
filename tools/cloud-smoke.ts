@@ -23,7 +23,7 @@ async function rpc(id: number, method: string, params: object = {}) {
   );
   assert.equal(response.status, 200);
   const message = (await response.json()) as {
-    result: { resources?: unknown[]; tools?: unknown[]; content?: { text: string }[] };
+    result: { resources?: unknown[]; tools?: { name: string }[]; content?: { text: string }[] };
     error?: unknown;
   };
   assert.equal(message.error, undefined);
@@ -35,7 +35,22 @@ await rpc(1, "initialize", {
   clientInfo: { name: "test", version: "1" }
 });
 assert.equal((await rpc(2, "resources/list")).resources?.length, 5);
-assert.equal((await rpc(3, "tools/list")).tools?.length, 3);
+assert.deepEqual(
+  (await rpc(3, "tools/list")).tools?.map((tool) => tool.name).sort(),
+  ["find_guidance", "get_ui_catalog", "get_working_instructions", "inspect_repository"].sort()
+);
+const guidance = JSON.parse(
+  (await rpc(5, "tools/call", {
+    name: "find_guidance",
+    arguments: { topic: "identity", repository: "cxsun" }
+  })).content![0].text
+);
+assert.equal(guidance.guideResource, "governance://app-setup");
+assert.deepEqual(guidance.owners, ["platform", "cxsun"]);
+assert.equal(guidance.repository.appId, "cxsun");
+assert.equal(guidance.repository.dataSource, "deployment-snapshot");
+assert.ok(guidance.repository.generatedAt);
+assert.ok(guidance.guidance.trim());
 const instructions = JSON.parse(
   (await rpc(4, "tools/call", { name: "get_working_instructions", arguments: {} })).content![0].text
 );

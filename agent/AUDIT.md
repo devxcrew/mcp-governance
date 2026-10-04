@@ -1,5 +1,27 @@
 # Governance audit — 2026-10-02
 
+## Independent review - 2026-10-04
+
+Normalized owner record headings to place the document title first.
+Ignored .cache/ because it contains local execution evidence and live connection output.
+Inspected filenames and sizes only. No cache payload or credentials were printed.
+
+Authenticated cloud connection passed before this review.
+`npm run verify` passed nine tests, type checks, versions, LF, and build.
+`npm run cloud:test` failed at tools/cloud-smoke.ts:38. Source exposes four tools, but the smoke test expects three.
+Corrected the smoke test to assert exact tool names and execute identity discovery with snapshot provenance.
+Repeated cloud:test and typecheck passed against local Worker source and its existing generated snapshot.
+This check did not deploy the Worker or refresh the generated snapshot.
+Task 06.06 still requires deployed discovery and freshness acceptance.
+The deployed connection returned snapshot time 2026-10-03T05:58:28.638Z.
+Deployed app-setup still describes Cxsun as a preview flow. Email repository metadata remains null.
+Source registers Platform and Email and adds focused discovery. These changes are not deployed evidence.
+Tasks 01.07, 05.03, 05.04, and 06.06 remain in-review or blocked by release integration.
+Exact version equality describes recorded metadata. It does not prove an installed artifact matches unpublished source changes.
+Prepare compatible release metadata and a fresh snapshot after owner acceptance. Deploy only within release authorization.
+No deployment, publication, commit, or push occurred.
+
+
 ## Fixed
 
 - Removed wording that made strict MCP connectivity a release prerequisite. Governance remains
@@ -96,3 +118,101 @@ Version remains 0.1.1. This audit is local and uncommitted. No push or npm publi
 - Passed npm run verify and npm run cloud:check: eight tests, typechecks, versions, LF, build, Worker protocol checks, and deployment dry run.
 - Passed authenticated live MCP connection, release metadata, LF, and configured-secret scans.
 - Prepared commit subject: #2 - Require audited cloud MCP guidance.
+
+## npm migration — 2026-10-03
+
+- Passed public package preparation for Framework and UI version 0.1.7.
+- Passed packed package consumption, Cxsun full verification, UIUX verification, and eight governance tests.
+- npm CLI login and device authentication succeeded as devxcrew.
+- Publication returned E409. Registry metadata records Framework unpublished at 2026-10-03 03:30:32 UTC and UI at 03:32:35 UTC.
+- npm blocks the same package names for 24 hours. Both names should be eligible after October 4 at 09:03 IST.
+- Blocked: registry publication, registry installation, and final project lockfile generation.
+- Cxsun currently runs with explicitly installed local packed snapshots. Its manifest names the intended npm versions.
+- Do not treat the current project lockfile as a completed registry migration.
+
+## npm migration completion — 2026-10-03
+
+- Passed: @devxcrew/core-framework@0.1.7 and @devxcrew/react-ui@0.1.7 are public in the npm registry.
+- Passed: Cxsun installed both registry packages and records registry URLs and integrity hashes in its lockfile.
+- Passed: UIUX typecheck and production build with the new UI package name. UIUX intentionally keeps its local source gallery dependency.
+- Passed: Governance cloud checks, deployment, and authenticated connections from all six repositories.
+- Passed: Tools source compatibility tests (21 tests). Tools npm publication was not part of this release.
+- Untested: Real identity, RBAC, and tenancy; these remain outside this package migration.
+
+## npm reference notes — 2026-10-03
+
+- Passed: authenticated live MCP connection before documentation edits.
+- Passed: registry queries confirm both public package versions at 0.1.7.
+- Passed: README link, LF checks, and git diff --check.
+- Reviewed: commands against repository scripts and verified release evidence. npm authentication and unpublishing references use official documentation.
+- Not repeated: publication and application tests. This change only adds reference notes.
+
+## New isolated applications — 2026-10-03
+
+- Passed: nine governance tests, typecheck, build, Worker checks, and deployment.
+- Passed: billing, crm, and qcafe retrieve their own live metadata and common guidance.
+- Passed: all three apps complete full verification and browser preview flows. Their audits record the installation workaround.
+
+## Ecommerce foundation — 2026-10-03
+
+- Passed nine governance tests, build, typecheck, Worker checks, and dry run with Ecommerce registered.
+- Ecommerce passed clean installation, full verification, startup, and browser preview checks.
+
+## Live MCP access audit — 2026-10-03
+
+- GREEN: authenticated live connection, matching repository metadata, five guidance resources, and all three MCP tools.
+- Central evidence: shared/mcp-governance/docs/mcp-access-audit.md.
+
+## Live guidance deployment — 2026-10-03
+
+Standalone npm tooling and app setup guidance is deployed at https://mcp.codexsun.com/mcp.
+Worker version: 9222e435-71a6-492b-bb32-3f2b2445f4d8.
+Cloud checks passed. Each of the five apps retrieved the updated standalone guide with its authenticated identity.
+Environment setup, version alignment, LF, configured-secret frontend scans, and ignored environment files passed for all five apps.
+All isolated test ports were released. Git commits and pushes remain unperformed.
+
+## Intergrid registration — 2026-10-03
+
+- Added projects/intergrid to the allowlist and deployed its live instructions.
+- Cloud checks passed. Intergrid authenticated and retrieved matching version 0.1.1 metadata.
+- Intergrid local checks, browser flow, Tools push, and clean GitHub CI passed.
+- Registration source remains part of the pending governance repository changes.
+
+## Foundation owner planning — 2026-10-04
+
+- Passed: governance authenticated cloud MCP access.
+- Passed: Platform independent cloud identity connection, with repository metadata null.
+- Passed: final npm run verify after Platform source registration: typecheck, nine tests, versions, LF, and build.
+- Corrected: owner PLAN and TASK line endings from CRLF to LF.
+- Pending: refreshed cloud registry deployment. Source registration does not claim deployed metadata.
+- No deployment, publication, commit, or push occurred.
+
+## Fresh local Worker acceptance - 2026-10-04
+
+Authenticated MCP retrieval passed. cloud:check generated five guides and 13 repository records.
+Worker type generation, TypeScript, authentication/origin/protocol/focused-discovery smoke checks and Wrangler dry-run passed.
+cloud:drift uses authenticated live MCP and reports only safe provenance and tool availability.
+The live comparison exited 1 as expected: deployed snapshot 2026-10-03T05:58:28.638Z lacks focused discovery.
+The fresh local snapshot is 2026-10-04T07:55:41.327Z. Deployment remains required and was not performed.
+Snapshot version remains 0.1.3. Proposed governance patch 0.1.4 awaits accepted release metadata.
+
+## Final extension guidance snapshot - 2026-10-04
+
+Authenticated MCP retrieval passed before source guidance changes.
+app-setup and code-standard now describe explicit backend/frontend provider contributions and the common identity workspace.
+Documented public namespaced permission declarations, no automatic grants, authenticateRequest and safe IdentityError mapping.
+Source contracts remain local unpublished development. Mail tests and production deployment remain user-deferred.
+Fresh snapshot: 2026-10-04T09:21:00.003Z, five guides and 13 owners.
+cloud:check passed Worker types, local protocol/authentication/origin/discovery smoke and Wrangler dry run.
+verify passed nine tests, TypeScript, version alignment, LF and build.
+cloud:drift reports deployment-required: live 2026-10-03T05:58:28.638Z has no focused discovery.
+No deployment or publication occurred. The initial root-level npm invocation failed because the workspace root has no package manifest; owner-root commands passed.
+# Workspace GitHub release - 2026-10-04
+
+npm run verify passed: nine tests, types, aligned metadata, LF and build. Cloud deployment remains deferred.
+Configured-secret scan found no matches in Git release candidates.
+
+User authorization: update versions and changelogs, then commit and push all workspace repositories.
+Update owner registrations, focused discovery and human-readable module guidance. Cloud snapshot deployment remains deferred.
+Authenticated MCP connection passed for this owner before release work.
+This delivery covers GitHub source. Npm publication, production deployment and real email acceptance remain separate gates.

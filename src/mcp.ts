@@ -1,6 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { type GovernanceReader, guides, repositories } from "./contracts.js";
+import { findGuidance, guidanceTopics, type GuidanceTopic } from "./discovery.js";
 
 export function createGovernanceMcp(
   catalog: GovernanceReader,
@@ -60,6 +61,31 @@ export function createGovernanceMcp(
     async ({ repository }) => text(await catalog.inspect(repository))
   );
   server.registerTool(
+    "find_guidance",
+    {
+      description:
+        "Find the authoritative guide and owners for a concrete task topic. Optionally verify repository package version. Never reads secrets.",
+      inputSchema: {
+        topic: z.enum(Object.keys(guidanceTopics) as [GuidanceTopic, ...GuidanceTopic[]]),
+        repository: z
+          .enum(Object.keys(repositories) as [RepositoryKey, ...RepositoryKey[]])
+          .optional(),
+        packageVersion: z
+          .string()
+          .regex(/^\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?$/)
+          .optional()
+      },
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false
+      }
+    },
+    async ({ topic, repository, packageVersion }) =>
+      text(await findGuidance(catalog, topic, repository, packageVersion))
+  );
+  server.registerTool(
     "get_ui_catalog",
     {
       description: "Get shared UI exports and their usage guide from the configured catalog.",
@@ -79,3 +105,5 @@ export function createGovernanceMcp(
 function text(value: unknown) {
   return { content: [{ type: "text" as const, text: JSON.stringify(value, null, 2) }] };
 }
+
+type RepositoryKey = keyof typeof repositories;

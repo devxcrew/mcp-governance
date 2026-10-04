@@ -4,11 +4,11 @@
 
 | Component or contract | Import path                           |
 | --------------------- | ------------------------------------- |
-| Button                | `@codexsun/ui/components/button`      |
-| LoginPage             | `@codexsun/ui/blocks/auth`            |
-| MainWorkspace         | `@codexsun/ui/layouts/main-workspace` |
-| Shared styles         | `@codexsun/ui/styles`                 |
-| Design system         | `@codexsun/ui/design-system`          |
+| Button                | `@devxcrew/react-ui/components/button`      |
+| LoginPage             | `@devxcrew/react-ui/blocks/auth`            |
+| MainWorkspace         | `@devxcrew/react-ui/layouts/main-workspace` |
+| Shared styles         | `@devxcrew/react-ui/styles`                 |
+| Design system         | `@devxcrew/react-ui/design-system`          |
 
 `MainWorkspace` composes `mdi-main`.
 

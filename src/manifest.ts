@@ -4,7 +4,7 @@ const route = z.string().regex(/^\/[a-zA-Z0-9/_-]*$/);
 const manifestSchema = z.object({
   contractVersion: z.literal(1),
   appId: z.string().regex(/^[a-zA-Z0-9._-]{1,128}$/),
-  kind: z.enum(["foundation-preview", "developer-gallery"]),
+  kind: z.enum(["foundation-preview", "foundation-authenticated", "developer-gallery"]),
   connection: z.object({
     urlEnvironment: z.literal("MCP_SERVER_URL"),
     defaultUrl: z.literal("https://mcp.codexsun.com/mcp").optional(),
@@ -24,7 +24,9 @@ const manifestSchema = z.object({
   foundation: z.object({
     identityOwner: z.literal("platform-core").optional(),
     identityRequired: z.boolean().optional(),
-    status: z.enum(["pending-shared-platform", "developer-gallery"]),
+    status: z.enum(["pending-shared-platform", "implemented-local-platform", "developer-gallery"]),
+    identityPackage: z.literal("@devxcrew/platform").optional(),
+    database: z.literal("sqlite-kysely").optional(),
     portals: z
       .array(
         z.object({

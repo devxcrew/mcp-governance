@@ -35,3 +35,10 @@ bump again when the release is prepared. Npm publication requires explicit autho
 Follow [code and module standards](code-standard.md). Review owner folders, public contracts,
 frontend/backend separation, and event or queue scope before completing changes. Keep files below
 700 lines when practical. Review 700–900 lines and split above 900 within the module.
+
+## Installed maintenance tooling
+
+Project apps use the public @devxcrew/tools npm package for repository maintenance.
+Version 0.1.7 supports agent/CHANGELOG.md and current shared package names.
+Use devxcrew-tools commands from npm scripts instead of ../../shared/mcp-governance/client/repository.mjs.
+Project application CI must work with one repository checkout.

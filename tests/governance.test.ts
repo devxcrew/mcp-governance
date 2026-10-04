@@ -21,7 +21,7 @@ for (const [name, path] of Object.entries(repositories)) {
   mkdirSync(resolve(directory, "agent"));
   writeFileSync(resolve(directory, "agent/AUDIT.md"), "# Audit\n\nFixture evidence.\n");
   writeFileSync(resolve(directory, "agent/TODOS.md"), "# Remaining work\n\nFixture todo.\n");
-  if (name === "cxsun") {
+  if (path.startsWith("projects/")) {
     writeFileSync(
       resolve(directory, "codexsun.governance.json"),
       JSON.stringify({
@@ -52,7 +52,12 @@ for (const [name, path] of Object.entries(repositories)) {
   writeFileSync(
     resolve(directory, "package.json"),
     JSON.stringify({
-      name: `@codexsun/${name}`,
+      name:
+        name === "framework"
+          ? "@devxcrew/core-framework"
+          : name === "ui"
+            ? "@devxcrew/react-ui"
+            : `@codexsun/${name}`,
       version: "0.1.0",
       scripts: { check: "verify" },
       exports: name === "ui" ? { "./components/*": "./src/components/*.tsx" } : {}
@@ -86,9 +91,9 @@ test("SDK client initializes and reads resources and repository/UI instructions"
     const resources = await client.listResources();
     assert.equal(resources.resources.length, 5);
     const guide = await client.readResource({ uri: "governance://ui" });
-    assert.match(String(guide.contents[0].text), /@codexsun\/ui\/layouts\/main-workspace/);
+    assert.match(String(guide.contents[0].text), /@devxcrew\/react-ui\/layouts\/main-workspace/);
     const tools = await client.listTools();
-    assert.equal(tools.tools.length, 3);
+    assert.equal(tools.tools.length, 4);
     assert(tools.tools.every((tool) => tool.annotations?.readOnlyHint));
     const result = await client.callTool({ name: "get_working_instructions", arguments: {} });
     const data = JSON.parse((result.content as { text: string }[])[0].text);
@@ -106,6 +111,18 @@ test("SDK client initializes and reads resources and repository/UI instructions"
       null
     );
     assert.equal(data.mode, "advisory");
+    const focused = await client.callTool({
+      name: "find_guidance",
+      arguments: { topic: "identity", repository: "platform", packageVersion: "0.1.0" }
+    });
+    const focusedData = JSON.parse((focused.content as { text: string }[])[0].text);
+    assert.deepEqual(focusedData.owners, ["platform", "cxsun"]);
+    assert.equal(focusedData.guideResource, "governance://app-setup");
+    const incompatible = await client.callTool({
+      name: "find_guidance",
+      arguments: { topic: "identity", repository: "platform", packageVersion: "99.0.0" }
+    });
+    assert.equal(incompatible.isError, true);
     const catalog = await client.callTool({ name: "get_ui_catalog", arguments: {} });
     assert.match((catalog.content as { text: string }[])[0].text, /\.\/components\/\*/);
     const rejected = await client.callTool({
@@ -134,7 +151,7 @@ test("client returns matching instructions and fails when the cloud is unavailab
   const originalFetch = globalThis.fetch;
   globalThis.fetch = (input, init) => originalFetch(config.url, init);
   try {
-    assert.equal((await connectGovernance(env)).repository.name, "@codexsun/framework");
+    assert.equal((await connectGovernance(env)).repository.name, "@devxcrew/core-framework");
     globalThis.fetch = async () => {
       throw new Error("Cloud unavailable.");
     };
@@ -187,6 +204,20 @@ test("manifest metadata is validated, filtered, and never claims enforcement", a
   assert.equal(Object.hasOwn(result, "guidance"), false);
   assert.equal(result.enforcement, "none");
   assert.equal(publicGovernanceManifest(manifest, "uiux").status, "invalid");
+  const authenticated = {
+    ...manifest,
+    kind: "foundation-authenticated",
+    foundation: {
+      ...manifest.foundation,
+      status: "implemented-local-platform",
+      identityOwner: "platform-core",
+      identityPackage: "@devxcrew/platform",
+      database: "sqlite-kysely"
+    }
+  };
+  const current = publicGovernanceManifest(authenticated, "cxsun");
+  assert.equal(current.foundation?.status, "implemented-local-platform");
+  assert.equal(current.foundation?.database, "sqlite-kysely");
   manifest.connection.policy = "mandatory";
   assert.equal(publicGovernanceManifest(manifest, "cxsun").status, "invalid");
   try {
@@ -231,6 +262,16 @@ test("client rejects unsafe URLs and does not follow credential-bearing redirect
     globalThis.fetch = originalFetch;
     redirectServer.closeAllConnections();
     await new Promise<void>((resolve) => redirectServer.close(() => resolve()));
+  }
+});
+
+test("new project apps receive their own repository metadata", async () => {
+  const catalog = new GovernanceCatalog(workspace, directory);
+  for (const name of ["billing", "crm", "qcafe", "ecommerce"] as const) {
+    const result = await catalog.instructions(name, "developer");
+    assert.equal(result.appId, name);
+    assert.equal(result.repository?.repository, `projects/${name}`);
+    assert.equal(result.repository?.governance?.appId, name);
   }
 });
 

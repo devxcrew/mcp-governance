@@ -1,6 +1,6 @@
 {
   "name": "@codexsun/mcp-governance",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "private": true,
   "type": "module",
   "description": "Read-only shared repository governance MCP server",
@@ -34,7 +34,8 @@
     "cloud:types": "wrangler types",
     "cloud:check": "npm run cloud:snapshot && npm run cloud:types && tsc -p tsconfig.cloud.json && npm run cloud:test && wrangler deploy --dry-run",
     "cloud:deploy": "npm run cloud:snapshot && wrangler deploy",
-    "cloud:test": "tsx tools/cloud-smoke.ts"
+    "cloud:test": "tsx tools/cloud-smoke.ts",
+    "cloud:drift": "tsx tools/cloud-drift.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.31.0",

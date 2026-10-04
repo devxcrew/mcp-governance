@@ -11,3 +11,4 @@ dist/
 cloud/generated/
 worker-configuration.d.ts
 .dev.vars
+.cache/

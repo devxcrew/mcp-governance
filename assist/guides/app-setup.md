@@ -30,11 +30,11 @@ context accidentally. Use public package exports. Never copy shared implementati
 | Tools                         | Development lifecycle and repository maintenance     |
 | App provider/composition root | Connect public providers and configure the app       |
 
-The current workspace has `shared/framework`, `shared/ui`, `shared/tools`, and
-`shared/mcp-governance`. There is no `shared/platform` or Composition package yet. Do not install
-imaginary packages or import the old `packages/*` or `system/*` paths. Use the app composition root
-until an actual public Composition package exists. Authenticated foundations remain incomplete until
-Platform Core provides and passes the required identity contracts.
+The workspace owners are Framework, UI, Platform Core, Tools and MCP Governance.
+Platform Core lives in `shared/platform` and exports identity providers, migrations and seeds.
+Cxsun composes these public packages. Do not import private sibling source files.
+The current Platform development artifact is bundled in Cxsun. Registry publication remains pending.
+Verify the consuming app's package manifest and audit before assuming a contract is available.
 
 ## Three identity portals and desks
 
@@ -132,6 +132,75 @@ cross-app/portal isolation, and port restart. Verify single-client and multi-ten
 when those modes are implemented. Never report browser or identity verification from a static build
 alone.
 
-Cxsun currently provides one frontend preview flow, not three authenticated identity desks. UIUX is
-an independent developer gallery, not an identity application. Shared packages do not require login
-desks. Their agent records remain package-specific.
+Cxsun implements three authenticated identity portals through its Platform development package.
+Identity administration resources and settings are tracked in the owner release plans.
+UIUX is an independent developer gallery. Shared package checks do not establish app identity acceptance.
+Read current owner audit evidence before claiming a flow is complete.
+
+## File-backed database acceptance
+
+Use Cxsun's configured SQLite file for normal final browser and API acceptance.
+Use separate SQLite files for destructive, migration and concurrency tests.
+Memory databases and mocks cannot establish release persistence evidence.
+Verify UI, API and stored state, then restart the server and verify persistence.
+Preserve existing users, settings and operational data during migrations and seeds.
+
+## Focused contract discovery
+
+Use find_guidance with a task topic and optional repository/package version.
+Topics cover architecture, resources, identity, presentation, persistence, asynchronous work, setup and maintenance.
+The response identifies authoritative resources and responsible owners.
+A version mismatch fails explicitly. Snapshot metadata is evidence of its recorded source state.
+Cloud consumers receive discovery changes only after the governance release is deployed.
+
+## Published shared packages
+
+Project applications consume `@devxcrew/core-framework` and `@devxcrew/react-ui` from npm. Do not add `file:` dependencies to project manifests.
+Shared repositories remain development owners. Cxsun can explicitly install local packed snapshots with `npm run packages:local` and restore npm packages with `npm run packages:npm`.
+UIUX remains the separate local source gallery. UI exports require a TypeScript-aware React bundler. Framework publishes compiled JavaScript and declarations.
+
+## Standalone project development
+
+Project apps consume @devxcrew/tools@0.1.7 or a verified newer release from npm.
+Use installed package commands for maintenance. Do not route app scripts through sibling MCP Governance or Tools files.
+App CI must check out only the app and run npm ci, tools:env, verify, and packages:check.
+Keep agent/CHANGELOG.md configured in .devxcrew-tools.json.
+
+Development setup requires Node/npm manifest versions, ignored environment configuration, live MCP credentials, and an available port.
+Initialize configuration with tools:env. Set the cloud secret, then use setup or mcp:verify before dev.
+No local guidance fallback is allowed.
+
+Local shared-package snapshots are optional source development tools. They must not be required for normal npm installs or app startup.
+UIUX remains a deliberate shared UI source gallery and is outside the registry-only project-app contract.
+Remove advertised desktop or container scripts until their owner provides the required scaffold.
+
+## Explicit module extension contracts
+
+Cxsun source composes backend registrations through Framework composeModules and its neutral application provider.
+A backend owner contributes its public provider, declared dependencies, lifecycle hooks and request handler.
+Composition does not scan module folders or import private implementations.
+Handlers receive cancellation. Browser-path dispatch also has a bounded handler deadline.
+Readiness follows module startup. Failed startup closes started dependencies in reverse order.
+The app owns the SQLite connection. Platform owns identity persistence and schema contracts.
+
+Frontend owners contribute public routes and navigation through the frontend contributor contract.
+identityProvider.workspace supplies the common authenticated shell, presentation, permissions and session handling.
+An added module composes its pages inside that shell instead of copying identity screens.
+Business fields, forms, validation and resource implementation remain in their owning module.
+A hidden navigation item is not authorization. Backend requests independently enforce access.
+
+Platform public registerPermissions accepts owner declarations with app-qualified permission IDs.
+Declare IDs as <APP_ID>.<owner>.<action> and list supported portals.
+Await declaration registration before readiness and permission-dependent routes.
+Registration creates permission vocabulary. It does not grant permissions to users or roles.
+Use public authenticateRequest for browser-cookie requests. It validates portal, trusted origin and cancellation.
+Use public requirePermission for module actions after authentication.
+Keep cookie parsing, session lookup and origin enforcement in Platform.
+Map public IdentityError status, safe message and field errors into Framework HttpError at the app transport boundary.
+Do not catch private Platform error files or expose raw database errors.
+
+These extension contracts describe verified local source development.
+Published package versions and deployed MCP guidance can predate the source contracts.
+Check installed public exports and authenticated snapshot provenance before using a contract.
+Independent registry release acceptance remains open.
+Real email testing and production deployment are deferred by the user.

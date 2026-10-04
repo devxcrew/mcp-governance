@@ -342,3 +342,14 @@ Do not use local guides or cached instructions as fallback. Instruction retrieva
 The inspected example is `E:\Workspace\codexsun\cxapp\apps`. Billing Sales demonstrates module-owned
 backend and frontend files with optional events and workers. Use its ownership pattern as a
 reference. Keep current Cxsun names, packages, environment settings, and infrastructure choices.
+
+## Public identity integration for additional modules
+
+Backend modules inject the identity provider's public contract through their registration boundary.
+Declare namespaced permissions with registerPermissions and enforce actions with requirePermission.
+Use authenticateRequest for HTTP authentication to preserve cookie, origin and cancellation rules.
+Keep identity secrets and database implementations private to Platform and app infrastructure.
+Map public IdentityError to the shared HTTP error contract at transport boundaries.
+Frontend module pages use identityProvider.workspace for the common authenticated desk shell.
+Compose public routes and navigation explicitly. Do not create a second login or permission system.
+Current extension exports are local source contracts pending coordinated package publication.

@@ -2,11 +2,36 @@
 
 ## Version State
 
-Current version: 0.1.2
+Current version: 0.1.4
 
-Release tag: v-0.1.2
+Release tag: v-0.1.4
 
-Changelog label: v 0.1.2
+Changelog label: v 0.1.4
+
+## v-0.1.4
+
+### [v 0.1.4] 2026-10-04 5:00 pm - Deliver foundation governance source
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Update owner registrations, focused discovery and human-readable module guidance. Cloud snapshot deployment remains deferred.
+
+## v-0.1.3
+
+### [v 0.1.3] 2026-10-03 9:17 am - Consume devxcrew npm packages
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Use devxcrew Framework and UI names in live guidance and repository inspection verification.
+- Add local npm connection and publishing notes, including device authentication and package development commands.
 
 ## v-0.1.2
 
@@ -215,3 +240,33 @@ Changelog label: v 0.1.2
 
 - Enforced the cloud endpoint for direct client imports and validated instruction identity.
 - Extended cloud request timeouts to 15 seconds and verified all live resources and tools.
+
+## npm package names — 2026-10-03
+
+- Use @devxcrew/core-framework and @devxcrew/react-ui because the original package names are under an npm unpublished-name hold.
+- Updated public imports, package manifests, local development commands, and common guidance.
+
+## npm migration completion — 2026-10-03
+
+- Passed: @devxcrew/core-framework@0.1.7 and @devxcrew/react-ui@0.1.7 are public in the npm registry.
+- Passed: Cxsun installed both registry packages and records registry URLs and integrity hashes in its lockfile.
+- Passed: UIUX typecheck and production build with the new UI package name. UIUX intentionally keeps its local source gallery dependency.
+- Passed: Governance cloud checks, deployment, and authenticated connections from all six repositories.
+- Passed: Tools source compatibility tests (21 tests). Tools npm publication was not part of this release.
+- Untested: Real identity, RBAC, and tenancy; these remain outside this package migration.
+
+## New application foundations — 2026-10-03
+
+- Register billing, crm, and qcafe as isolated project applications with live repository metadata.
+- Preserve Cxsun and the published package setup.
+
+## Ecommerce foundation — 2026-10-03
+
+- Add Ecommerce to the live repository registry. Each project retains its own configuration and public package dependencies.
+
+## Standalone guidance update — 2026-10-03
+
+- Define npm-only Tools maintenance and single-app CI checkout for project foundations.
+- Document preserved environment initialization, required live MCP access, and optional shared source development.
+- Deploy the updated snapshot and verify retrieval by all five project apps.
+- Preserve release version. No Git commit or push was performed.

@@ -4,6 +4,7 @@
 | -------------- | -------------------------------------------------------- |
 | Cxsun          | Base application and app composition                     |
 | Framework      | Reusable runtime and HTTP primitives                     |
+| Platform Core  | Identity, sessions, permissions and trusted tenant scope |
 | UI             | React components, blocks, layouts, templates, and styles |
 | UIUX           | Developer gallery at http://127.0.0.1:6102               |
 | Tools          | Development and maintenance commands                     |
