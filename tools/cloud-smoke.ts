@@ -40,10 +40,12 @@ assert.deepEqual(
   ["find_guidance", "get_ui_catalog", "get_working_instructions", "inspect_repository"].sort()
 );
 const guidance = JSON.parse(
-  (await rpc(5, "tools/call", {
-    name: "find_guidance",
-    arguments: { topic: "identity", repository: "cxsun" }
-  })).content![0].text
+  (
+    await rpc(5, "tools/call", {
+      name: "find_guidance",
+      arguments: { topic: "identity", repository: "cxsun" }
+    })
+  ).content![0].text
 );
 assert.equal(guidance.guideResource, "governance://app-setup");
 assert.deepEqual(guidance.owners, ["platform", "cxsun"]);

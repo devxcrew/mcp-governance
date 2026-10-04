@@ -6,18 +6,18 @@ Endpoint: https://mcp.codexsun.com/mcp
 
 Result: GREEN for all 10 repositories.
 
-| Repository | Version | Live MCP | Guides | Tools | Development hook |
-| --- | --- | --- | --- | --- | --- |
-| cxsun | 0.1.8 | GREEN | 5/5 | 3/3 | Passed |
-| billing | 0.1.0 | GREEN | 5/5 | 3/3 | Passed |
-| crm | 0.1.0 | GREEN | 5/5 | 3/3 | Passed |
-| qcafe | 0.1.0 | GREEN | 5/5 | 3/3 | Passed |
-| ecommerce | 0.1.0 | GREEN | 5/5 | 3/3 | Passed |
-| framework | 0.1.7 | GREEN | 5/5 | 3/3 | Not an application startup hook |
-| ui | 0.1.7 | GREEN | 5/5 | 3/3 | Not an application startup hook |
-| uiux | 0.1.7 | GREEN | 5/5 | 3/3 | Not an application startup hook |
-| tools | 0.1.6 | GREEN | 5/5 | 3/3 | Not an application startup hook |
-| mcp-governance | 0.1.3 | GREEN | 5/5 | 3/3 | Not an application startup hook |
+| Repository     | Version | Live MCP | Guides | Tools | Development hook                |
+| -------------- | ------- | -------- | ------ | ----- | ------------------------------- |
+| cxsun          | 0.1.8   | GREEN    | 5/5    | 3/3   | Passed                          |
+| billing        | 0.1.0   | GREEN    | 5/5    | 3/3   | Passed                          |
+| crm            | 0.1.0   | GREEN    | 5/5    | 3/3   | Passed                          |
+| qcafe          | 0.1.0   | GREEN    | 5/5    | 3/3   | Passed                          |
+| ecommerce      | 0.1.0   | GREEN    | 5/5    | 3/3   | Passed                          |
+| framework      | 0.1.7   | GREEN    | 5/5    | 3/3   | Not an application startup hook |
+| ui             | 0.1.7   | GREEN    | 5/5    | 3/3   | Not an application startup hook |
+| uiux           | 0.1.7   | GREEN    | 5/5    | 3/3   | Not an application startup hook |
+| tools          | 0.1.6   | GREEN    | 5/5    | 3/3   | Not an application startup hook |
+| mcp-governance | 0.1.3   | GREEN    | 5/5    | 3/3   | Not an application startup hook |
 
 ## Verified
 

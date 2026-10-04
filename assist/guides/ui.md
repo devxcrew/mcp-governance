@@ -2,8 +2,8 @@
 
 ## Imports
 
-| Component or contract | Import path                           |
-| --------------------- | ------------------------------------- |
+| Component or contract | Import path                                 |
+| --------------------- | ------------------------------------------- |
 | Button                | `@devxcrew/react-ui/components/button`      |
 | LoginPage             | `@devxcrew/react-ui/blocks/auth`            |
 | MainWorkspace         | `@devxcrew/react-ui/layouts/main-workspace` |

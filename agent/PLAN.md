@@ -17,7 +17,6 @@ Exact version equality describes recorded metadata. It does not prove an install
 Prepare compatible release metadata and a fresh snapshot after owner acceptance. Deploy only within release authorization.
 No deployment, publication, commit, or push occurred.
 
-
 This owner plan implements the Cxsun master plan at `../../projects/cxsun/agent/PLAN.md`.
 Keep the master task IDs and phase order. Existing release history remains in CHANGELOG.
 

@@ -4,10 +4,10 @@ Verified on October 3, 2026. Check current npm requirements before the next rele
 
 ## Packages and owners
 
-| Package | Source repository | Verified version | Published content |
-| --- | --- | --- | --- |
-| `@devxcrew/core-framework` | `D:\codexsun\shared\framework` | `0.1.7` | Compiled ESM JavaScript and TypeScript declarations |
-| `@devxcrew/react-ui` | `D:\codexsun\shared\ui` | `0.1.7` | TypeScript, TSX, and CSS for React bundlers |
+| Package                    | Source repository              | Verified version | Published content                                   |
+| -------------------------- | ------------------------------ | ---------------- | --------------------------------------------------- |
+| `@devxcrew/core-framework` | `D:\codexsun\shared\framework` | `0.1.7`          | Compiled ESM JavaScript and TypeScript declarations |
+| `@devxcrew/react-ui`       | `D:\codexsun\shared\ui`        | `0.1.7`          | TypeScript, TSX, and CSS for React bundlers         |
 
 The npm account is `devxcrew`. GitHub repository names remain `framework` and `ui`.
 The npm package names differ from the repository names.
@@ -140,15 +140,15 @@ That gallery exception does not apply to project release manifests.
 
 ## Problems encountered in this release
 
-| Symptom | Action |
-| --- | --- |
-| Browser login works, but `npm whoami` fails | Complete a fresh CLI web login. |
-| Email OTP does not arrive | Use the registered device or security key when npm offers it. Otherwise use npm account recovery. |
-| `EOTP` or a publishing security-key prompt | Complete the fresh device check for that publish command. |
-| Authentication URL expires | Restart the command and use its new URL. Do not reuse an old browser challenge. |
+| Symptom                                      | Action                                                                                                       |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Browser login works, but `npm whoami` fails  | Complete a fresh CLI web login.                                                                              |
+| Email OTP does not arrive                    | Use the registered device or security key when npm offers it. Otherwise use npm account recovery.            |
+| `EOTP` or a publishing security-key prompt   | Complete the fresh device check for that publish command.                                                    |
+| Authentication URL expires                   | Restart the command and use its new URL. Do not reuse an old browser challenge.                              |
 | Publish succeeds, but registry returns `404` | Retry registry checks after a short delay. Inspect account package and staged-package status if it persists. |
-| `E409` after a package was unpublished | Respect npm's name hold. Select another name only with owner authorization. |
-| App resolves sibling files after migration | Install registry versions and review the manifest, lockfile, imports, and build hooks. |
+| `E409` after a package was unpublished       | Respect npm's name hold. Select another name only with owner authorization.                                  |
+| App resolves sibling files after migration   | Install registry versions and review the manifest, lockfile, imports, and build hooks.                       |
 
 On October 3, `@devxcrew/framework` and `@devxcrew/ui` were temporarily unavailable after unpublishing.
 The owner selected `@devxcrew/core-framework` and `@devxcrew/react-ui` instead.

@@ -97,6 +97,7 @@ cloud:drift uses authenticated live MCP and reports only safe provenance and too
 The live comparison exited 1 as expected: deployed snapshot 2026-10-03T05:58:28.638Z lacks focused discovery.
 The fresh local snapshot is 2026-10-04T07:55:41.327Z. Deployment remains required and was not performed.
 Snapshot version remains 0.1.3. Proposed governance patch 0.1.4 awaits accepted release metadata.
+
 ## Workspace GitHub release - 2026-10-04
 
 Release title: Deliver foundation governance source.

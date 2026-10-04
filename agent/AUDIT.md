@@ -21,7 +21,6 @@ Exact version equality describes recorded metadata. It does not prove an install
 Prepare compatible release metadata and a fresh snapshot after owner acceptance. Deploy only within release authorization.
 No deployment, publication, commit, or push occurred.
 
-
 ## Fixed
 
 - Removed wording that made strict MCP connectivity a release prerequisite. Governance remains
@@ -207,6 +206,7 @@ cloud:check passed Worker types, local protocol/authentication/origin/discovery 
 verify passed nine tests, TypeScript, version alignment, LF and build.
 cloud:drift reports deployment-required: live 2026-10-03T05:58:28.638Z has no focused discovery.
 No deployment or publication occurred. The initial root-level npm invocation failed because the workspace root has no package manifest; owner-root commands passed.
+
 # Workspace GitHub release - 2026-10-04
 
 npm run verify passed: nine tests, types, aligned metadata, LF and build. Cloud deployment remains deferred.
@@ -216,3 +216,7 @@ User authorization: update versions and changelogs, then commit and push all wor
 Update owner registrations, focused discovery and human-readable module guidance. Cloud snapshot deployment remains deferred.
 Authenticated MCP connection passed for this owner before release work.
 This delivery covers GitHub source. Npm publication, production deployment and real email acceptance remain separate gates.
+
+## CI repair - 2026-10-04
+
+GitHub run 37199960244 rejected eight files on formatting. Applied the repository Prettier formatter. npm run format:check and npm run verify now pass locally, including nine tests. The repair preserves version 0.1.4 and changes no runtime behavior.
