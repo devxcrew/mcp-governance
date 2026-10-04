@@ -270,3 +270,7 @@ Changelog label: v 0.1.4
 - Document preserved environment initialization, required live MCP access, and optional shared source development.
 - Deploy the updated snapshot and verify retrieval by all five project apps.
 - Preserve release version. No Git commit or push was performed.
+
+### 0.1.4 inventory completion
+
+Include Veyrezio in the 14-repository governance snapshot. Verify local cloud preparation without deploying.

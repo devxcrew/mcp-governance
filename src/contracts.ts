@@ -5,6 +5,7 @@ export const repositories = {
   qcafe: "projects/qcafe",
   ecommerce: "projects/ecommerce",
   intergrid: "projects/intergrid",
+  veyrezio: "projects/veyrezio",
   framework: "shared/framework",
   platform: "shared/platform",
   email: "addons/email",

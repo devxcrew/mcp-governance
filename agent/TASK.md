@@ -1,5 +1,19 @@
 # Current task
 
+## Completion wave - 2026-10-04
+
+Source 0.1.4 and its formatting repair are committed. Ubuntu and Windows CI passed. The live deployment still returns the 2026-10-03 snapshot. Source guidance is prepared. Cloud freshness acceptance is deferred with deployment.
+
+- [x] Reconcile current status with the GitHub source release and latest owner audit.
+- [x] Retrieve fresh authenticated cloud governance before this wave.
+- [x] Verify nine tests and cloud preparation for 14 repositories.
+- [ ] Deploy and accept fresh cloud metadata within the approved deployment scope.
+
+Use projects/cxsun/agent/REMAINING-WORK.md for ordered cross-owner dependencies.
+Production deployment and real SMTP acceptance remain deferred. No pending external gate is marked complete.
+
+## Prior records
+
 <!-- foundation-checklist:start -->
 
 ## Numbered phase checklist
