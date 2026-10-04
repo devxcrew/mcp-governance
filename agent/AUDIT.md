@@ -224,3 +224,5 @@ GitHub run 37199960244 rejected eight files on formatting. Applied the repositor
 ## Completion wave - 2026-10-04
 
 Register Veyrezio in the repository inventory. Verify passes nine tests. Cloud preparation passes snapshot generation for 14 repositories, five guides, four-tool smoke checks, and Wrangler dry run. This is source preparation; the deployed snapshot remains unchanged.
+
+After publication, cloud:check again prepared the current 14-repository snapshot, passed four-tool protocol smoke checks, and completed the Worker dry run. No live deployment was performed.
