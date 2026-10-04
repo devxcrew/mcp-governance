@@ -20,8 +20,7 @@ Production deployment and real SMTP acceptance remain deferred. No pending exter
 
 Master: [all foundation tasks](D:/codexsun/projects/cxsun/agent/CHECKLIST.md).
 
-Updated: 2026-10-04. Checked steps have recorded local evidence.
-Parents retain incomplete acceptance gates. Mail tests and production deployment are deferred by user.
+Updated: 2026-10-04. Checked steps have recorded evidence. External acceptance stays pending.
 
 ### Phase 01 - Baseline and ownership
 
