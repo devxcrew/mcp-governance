@@ -10,6 +10,16 @@ Changelog label: v 0.1.10
 
 ## v-0.1.10
 
+### [v 0.1.10] 2026-10-05 12:46 pm - Record authenticated foundation audit
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Record 12 authenticated repository checks and shared alignment evidence; live app inventory refresh remains pending.
+
 ### [v 0.1.10] 2026-10-05 11:21 am - Remove Intergrid from managed governance
 
 #### Database Changes
@@ -369,3 +379,10 @@ Include Veyrezio in the 14-repository governance snapshot. Verify local cloud pr
 
 Source version: 0.1.6. Published package archives retain their existing versions.
 The baseline is recorded in projects/cxsun/agent/DEPENDENCY-BASELINE.json.
+
+
+## Unreleased alignment - 2026-10-05
+
+Verification, cloud tests and cloud drift passed. Live snapshot matches 0.1.10 and all 12 repository connections passed.
+
+Authenticated live MCP verification passed. See the [alignment audit](D:/codexsun/projects/cxsun/agent/SHARED-ALIGNMENT.md). Version numbers remain unchanged. No release delivery was performed by this audit.
