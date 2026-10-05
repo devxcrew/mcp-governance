@@ -27,7 +27,13 @@ const snapshot = {
 };
 const source = JSON.stringify(snapshot, null, 2);
 for (const path of Object.values(repositories)) {
-  const env = parseEnv(await readFile(`${workspace}/${path}/.env`, "utf8"));
+  let sourceEnv = "";
+  try {
+    sourceEnv = await readFile(`${workspace}/${path}/.env`, "utf8");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
+  const env = parseEnv(sourceEnv);
   for (const [key, value] of Object.entries(env)) {
     if (/SECRET|TOKEN|PASSWORD/i.test(key) && value.length >= 8 && source.includes(value))
       throw new Error(

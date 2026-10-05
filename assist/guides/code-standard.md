@@ -1,5 +1,14 @@
 # Code and module standards
 
+This deployed cloud resource is the shared instruction authority for every app. The matching
+repository files are release sources for governance maintainers only. A local MCP listener is for
+protocol development; app agents must connect to `https://mcp.codexsun.com/mcp` and stop if the
+authenticated cloud resource is unavailable. Never substitute a local guide or an older snapshot.
+
+Use the exact canonical module filenames and the same route, controller, service, and repository
+responsibilities in every app. Write names, errors, and user-facing copy in plain, consistent
+language. Follow the repository formatter and keep business terms consistent within the owner.
+
 ## Architecture
 
 Build a modular monolith with strict module ownership and practical domain-driven design (DDD). An
@@ -134,7 +143,8 @@ Keep required non-applicable files minimal and explicit. Do not disguise shared
 business implementations with aliases or wrappers. Add module-owned pages, details, reports, print
 views, or helper files when needed. Use an optional `<module>.controller.ts` or `.tsx` for complex
 UI orchestration. Keep route registration and view components clean. Do not duplicate hooks or
-backend controller behavior. Omit roles that the module does not use. Frontend modules do not own
+backend controller behavior. Keep required roles present with a minimal, honest explanation when
+the capability does not use them yet. Frontend modules do not own
 database migrations or server repositories.
 
 Use shared UI through public exports. Keep business fields and interactions in the frontend owner.

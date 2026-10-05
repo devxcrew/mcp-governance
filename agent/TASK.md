@@ -1,5 +1,14 @@
 # Current task
 
+## Cloud-only governance and app connections - 2026-10-05
+
+- [x] Review the canonical module contract and remove conflicting optional-role wording.
+- [x] Keep app clients pinned to the authenticated cloud endpoint and retry transient failures.
+- [x] Make strict verification check repository metadata and required cloud resources and tools.
+- [x] Prepare all 14 repository metadata records for the Worker snapshot.
+- [ ] Deploy the Worker and verify every app connection against the published snapshot.
+
+
 ## Strict module file contracts - 2026-10-05
 
 - [x] Require the canonical backend and frontend file sets in the central code standard.

@@ -2,11 +2,23 @@
 
 ## Version State
 
-Current version: 0.1.7
+Current version: 0.1.8
 
-Release tag: v-0.1.7
+Release tag: v-0.1.8
 
-Changelog label: v 0.1.7
+Changelog label: v 0.1.8
+
+## v-0.1.8
+
+### [v 0.1.8] 2026-10-05 10:07 am - Cloud-only module contracts and reliable MCP checks
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Align canonical module guidance, verify cloud resources and metadata, and retry transient MCP failures.
 
 ## v-0.1.7
 

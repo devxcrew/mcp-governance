@@ -179,6 +179,38 @@ test("clients without a URL use the cloud endpoint instead of a local listener",
   }
 });
 
+test("client retries transient cloud failures and rejects missing strict metadata", async () => {
+  const { connectGovernance } = await import("../client/connect.mjs");
+  const env = { MCP_SERVER_SECRET: secret, APP_ID: "cxsun", APP_USER: "developer" };
+  const originalFetch = globalThis.fetch;
+  let attempts = 0;
+  globalThis.fetch = async (input, init) => {
+    attempts++;
+    if (attempts === 1) return new Response(null, { status: 503 });
+    const message = JSON.parse(String(init?.body));
+    if (message.method === "notifications/initialized") return new Response(null, { status: 202 });
+    const result =
+      message.method === "initialize"
+        ? { protocolVersion: "2025-03-26" }
+        : {
+            content: [
+              {
+                type: "text",
+                text: JSON.stringify({ appId: "cxsun", appUser: "developer", instructions: "ok" })
+              }
+            ]
+          };
+    return Response.json({ jsonrpc: "2.0", id: message.id, result });
+  };
+  try {
+    assert.equal((await connectGovernance(env)).instructions, "ok");
+    assert.equal(attempts, 4);
+    await assert.rejects(connectGovernance(env, { strict: true }), /metadata is missing/);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("server configuration rejects remote URLs, weak secrets and invalid paths", () => {
   assert.throws(() =>
     readConfig({ MCP_SERVER_URL: "http://example.com/mcp", MCP_SERVER_SECRET: secret })

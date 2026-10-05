@@ -1,5 +1,14 @@
 # Governance audit — 2026-10-02
 
+## Cloud-only governance and app connections - 2026-10-05
+
+- Passed: authenticated cloud MCP connection before editing.
+- Passed: source snapshot prepared with five guides and 14 repository records.
+- Passed: client now retries transient network and HTTP 429/5xx failures and strict mode checks cloud metadata, resources, and tool discovery.
+- Pending: source verification, Worker deployment, and live per-app strict connections.
+- Veyrezio checkout is unavailable locally; its current metadata was read from GitHub for snapshot preparation.
+
+
 ## Strict module file contracts - 2026-10-05
 
 - Passed: authenticated MCP connection before source edits.

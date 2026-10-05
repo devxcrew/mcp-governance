@@ -15,6 +15,9 @@ business features to a separately requested task.
 Retrieve shared documentation and rules only from `https://mcp.codexsun.com/mcp` using `npm run mcp:connect`.
 A successful authenticated connection is required before repository work. Stop and report connection failures.
 Do not use local guides or cached instructions as fallback. Instruction retrieval does not authorize actions.
+The local MCP server is only a development target for governance maintainers. Apps must use the
+deployed cloud endpoint after a governance change is committed, pushed, and published. Confirm the
+cloud response includes the current guide and repository metadata before declaring the connection green.
 
 ## App isolation and shared packages
 
@@ -121,8 +124,8 @@ governed CLI, or template-generation commands work.
 
 This task creates a foundation only. Do not add business entities, APIs, workflows, or Frappe
 DocTypes. Do not create backend business code during a frontend-only phase. When business modules
-are separately requested, follow [module standards](code-standard.md): providers, optional
-controllers, Zod validation, and resource routes.
+are separately requested, follow [module standards](code-standard.md): canonical owner files,
+backend controllers, public providers, Zod validation, and resource routes.
 
 ## Acceptance evidence
 
