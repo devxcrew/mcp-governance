@@ -4,11 +4,14 @@
 
 - [x] Remove Intergrid from the managed repository inventory and active snapshot source.
 - [x] Keep the five remaining project apps under the same cloud-only module standard.
-- [ ] Verify, publish, and check the 12-repository cloud snapshot.
+- [x] Verify, publish, and check the 12-repository cloud snapshot.
 
 Historical Intergrid records remain for traceability. The Intergrid repository is outside this
 managed governance scope. The current app comparison covers Cxsun, Billing, CRM, QCafe, and
 Ecommerce.
+Governance 0.1.10 passed source checks and GitHub CI. The Worker snapshot contains five guides
+and 12 repositories. All 12 managed strict cloud connections passed; Intergrid strict verification
+failed on missing repository metadata as expected. Cloud drift is aligned.
 
 ## Remove Veyrezio from managed governance - 2026-10-05
 

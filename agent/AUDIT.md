@@ -3,8 +3,13 @@
 ## Managed inventory change - Intergrid - 2026-10-05
 
 - Scope: remove Intergrid from managed governance; retain five project apps and seven shared, add-on, and devkit repositories.
-- Pending: source checks, release commit, Worker deployment, drift, and strict connection sweep.
+- Passed: 11 tests, typecheck, build, formatting, LF, version alignment, Worker smoke, and deployment dry run.
+- Passed: release 0.1.10 commit and GitHub CI; Worker deployed with five guides and 12 repositories.
+- Passed: all 12 managed identities passed strict cloud verification against the deployed snapshot.
+- Passed: Intergrid strict verification failed on missing metadata, confirming its exclusion.
+- Passed: cloud drift reported aligned.
 - Current comparison: the four starter apps share Cxsun's public visual language but use preview sessions and lack its authenticated identity foundation.
+- Current comparison: Billing, CRM, QCafe, and Ecommerce use identical starter routes, login, home page, and styles; their desk files differ by app ID. None has a business module folder. Cxsun has server-backed identity and three portals. This comparison inspected source, not rendered browser output.
 
 ## Managed inventory change - 2026-10-05
 
