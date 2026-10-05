@@ -307,6 +307,13 @@ test("new project apps receive their own repository metadata", async () => {
   }
 });
 
+test("unmanaged app IDs receive no repository metadata", async () => {
+  const catalog = new GovernanceCatalog(workspace, directory);
+  const result = await catalog.instructions("veyrezio", "developer");
+  assert.equal(result.repository, null);
+  assert.equal(Object.hasOwn(repositories, "veyrezio"), false);
+});
+
 test("client rejects instructions returned for a different app", async () => {
   const { connectGovernance } = await import("../client/connect.mjs");
   const originalFetch = globalThis.fetch;

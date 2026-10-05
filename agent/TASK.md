@@ -1,5 +1,14 @@
 # Current task
 
+## Remove Veyrezio from managed governance - 2026-10-05
+
+- [x] Remove Veyrezio from the managed repository inventory.
+- [x] Keep the remaining 13 repositories under the same cloud-only module standard.
+- [ ] Verify, publish, and check the 13-repository cloud snapshot.
+
+The previous Veyrezio connection work remains in historical records. It is outside the current
+managed inventory. Existing Cxsun and Platform module alignment is separate owner work.
+
 ## Cloud-only governance and app connections - 2026-10-05
 
 - [x] Review the canonical module contract and remove conflicting optional-role wording.

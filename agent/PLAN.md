@@ -1,5 +1,11 @@
 # MCP Governance foundation plan
 
+## Current managed inventory
+
+Publish the 13-repository cloud snapshot without Veyrezio. Verify that strict connections for
+the remaining repositories pass and that unmanaged Veyrezio receives no repository metadata.
+Keep existing module implementation gaps in their owners' plans.
+
 ## Current package migration
 
 Use @devxcrew/framework 0.1.8 and @devxcrew/ui 0.2.0 through public exports.

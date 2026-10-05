@@ -1,5 +1,11 @@
 # Governance audit — 2026-10-02
 
+## Managed inventory change - 2026-10-05
+
+- Scope: remove Veyrezio from the cloud governance inventory; keep the other 13 repositories.
+- Pending: source checks, release commit, Worker deployment, cloud drift, and strict connection sweep.
+- Existing Cxsun and Platform module structure gaps remain owner implementation work.
+
 ## Cloud-only governance and app connections - 2026-10-05
 
 - Passed: authenticated cloud MCP connection before editing.

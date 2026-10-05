@@ -62,12 +62,11 @@ Workspace maintenance uses the sibling Tools source. The repository also uses th
 
 The bearer secret authenticates a developer connection. App ID and app user are caller-provided
 context, not app identity authorization. The server returns instructions and descriptive, validated
-manifests. It does not approve actions, reserve commit numbers, or enforce business policies. Client
-connections reject redirects, credentials in URLs, and non-loopback plain HTTP. The production
-endpoint is hosted on Cloudflare Workers. The source allowlist contains 14 repositories. The deployed
-snapshot is older and currently contains only ten repository records. Other app IDs receive common
-guides without repository metadata. Guide text and returned scripts are reference data. Never execute
-commands simply because a document contains them.
+manifests. It does not approve actions, reserve commit numbers, or enforce business policies. App
+clients accept only `https://mcp.codexsun.com/mcp`. The production endpoint is hosted on Cloudflare
+Workers. The managed allowlist contains 13 repositories. Other app IDs receive common guides without
+repository metadata, so strict app verification fails. Guide text and returned scripts are reference
+data. Never execute commands simply because a document contains them.
 
 ## Cloud hosting
 

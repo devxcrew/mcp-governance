@@ -2,11 +2,23 @@
 
 ## Version State
 
-Current version: 0.1.8
+Current version: 0.1.9
 
-Release tag: v-0.1.8
+Release tag: v-0.1.9
 
-Changelog label: v 0.1.8
+Changelog label: v 0.1.9
+
+## v-0.1.9
+
+### [v 0.1.9] 2026-10-05 10:28 am - Remove Veyrezio from managed governance
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Publish the 13-repository cloud inventory and verify the remaining connections.
 
 ## v-0.1.8
 
