@@ -1,5 +1,14 @@
 # Governance audit — 2026-10-02
 
+## Package reference cleanup - 2026-10-05
+
+- [x] Retrieve authenticated cloud governance.
+- [x] Remove superseded package identifiers from source, fixtures and current documents.
+- [x] Use Framework and UI names consistently.
+- [x] Scan repository files for remaining superseded identifiers.
+
+Static cleanup only. No test suite, publication or deployment ran in this step.
+
 ## Package migration - 2026-10-05
 
 - [x] Retrieve authenticated cloud governance before this migration.
@@ -139,7 +148,6 @@ Version remains 0.1.1. This audit is local and uncommitted. No push or npm publi
 
 ## npm migration completion — 2026-10-03
 
-- Passed: @devxcrew/core-framework@0.1.7 and @devxcrew/react-ui@0.1.7 are public in the npm registry.
 - Passed: Cxsun installed both registry packages and records registry URLs and integrity hashes in its lockfile.
 - Passed: UIUX typecheck and production build with the new UI package name. UIUX intentionally keeps its local source gallery dependency.
 - Passed: Governance cloud checks, deployment, and authenticated connections from all six repositories.
@@ -234,3 +242,13 @@ GitHub run 37199960244 rejected eight files on formatting. Applied the repositor
 Register Veyrezio in the repository inventory. Verify passes nine tests. Cloud preparation passes snapshot generation for 14 repositories, five guides, four-tool smoke checks, and Wrangler dry run. This is source preparation; the deployed snapshot remains unchanged.
 
 After publication, cloud:check again prepared the current 14-repository snapshot, passed four-tool protocol smoke checks, and completed the Worker dry run. No live deployment was performed.
+
+## Dependency alignment - 2026-10-05
+
+- [x] Align consumed shared packages and common direct dependency versions.
+- [x] Install dependencies with lifecycle scripts disabled.
+- [x] Keep app dependency ownership and public peer ranges.
+- [x] Exclude Veyrezio from this change.
+
+Source version: 0.1.6. Published package archives retain their existing versions.
+The baseline is recorded in projects/cxsun/agent/DEPENDENCY-BASELINE.json.

@@ -1,5 +1,14 @@
 # Current task
 
+## Package reference cleanup - 2026-10-05
+
+- [x] Retrieve authenticated cloud governance.
+- [x] Remove superseded package identifiers from source, fixtures and current documents.
+- [x] Use Framework and UI names consistently.
+- [x] Scan repository files for remaining superseded identifiers.
+
+Static cleanup only. No test suite, publication or deployment ran in this step.
+
 ## Package migration - 2026-10-05
 
 - [x] Retrieve authenticated cloud governance before this migration.
@@ -125,3 +134,13 @@ Release title: Deliver foundation governance source.
 Update owner registrations, focused discovery and human-readable module guidance. Cloud snapshot deployment remains deferred.
 Update version records, review release checks, then commit and push the current owner branch.
 Preserve existing task history and incomplete acceptance gates.
+
+## Dependency alignment - 2026-10-05
+
+- [x] Align consumed shared packages and common direct dependency versions.
+- [x] Install dependencies with lifecycle scripts disabled.
+- [x] Keep app dependency ownership and public peer ranges.
+- [x] Exclude Veyrezio from this change.
+
+Source version: 0.1.6. Published package archives retain their existing versions.
+The baseline is recorded in projects/cxsun/agent/DEPENDENCY-BASELINE.json.

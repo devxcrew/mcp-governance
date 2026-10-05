@@ -11,7 +11,6 @@ Verified on October 5, 2026. Check current npm requirements before the next rele
 
 The npm account is `devxcrew`. GitHub repository names remain `framework` and `ui`.
 The shorter npm names match their GitHub repository names.
-Old core-framework and react-ui releases remain available for existing consumers.
 
 UI requires a TypeScript-aware React bundler, such as Vite. React and React DOM are peer dependencies.
 Use supported public exports. Native Node cannot execute UI TSX exports directly.
@@ -105,7 +104,7 @@ Choose the intended versions for future releases.
 
 ```powershell
 Set-Location D:\codexsun\projects\cxsun
-npm install @devxcrew/framework@^0.1.7 @devxcrew/ui@^0.1.7
+npm install @devxcrew/framework@^0.1.8 @devxcrew/ui@^0.2.0
 npm ci
 npm run verify
 ```
