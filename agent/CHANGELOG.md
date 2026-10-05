@@ -2,11 +2,23 @@
 
 ## Version State
 
-Current version: 0.1.6
+Current version: 0.1.7
 
-Release tag: v-0.1.6
+Release tag: v-0.1.7
 
-Changelog label: v 0.1.6
+Changelog label: v 0.1.7
+
+## v-0.1.7
+
+### [v 0.1.7] 2026-10-05 9:30 am - Strengthen module ownership guidance
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Require canonical module files and controller wiring in governance.
 
 ## v-0.1.6
 

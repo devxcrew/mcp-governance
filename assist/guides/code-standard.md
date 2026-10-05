@@ -41,6 +41,13 @@ implementations.
 Keep files together in one owner folder: `src/api/modules/<module>/`. An app with a separate API
 package may use `api/src/modules/<module>/`.
 
+Every backend business module MUST contain every file in the canonical structure below, using the
+exact filenames. This is a required contract for all agents and contributors, not a starter template.
+Do not omit a file because a capability is currently small or unused. Keep non-applicable files
+minimal and explicit; do not add fake business behavior to them. Additional files are allowed only
+for concrete owner-local needs and must not replace or rename canonical files. A backend module is
+not complete while a required file is missing or its public wiring is incomplete.
+
 ```text
 <module>/
   index.ts
@@ -49,7 +56,7 @@ package may use `api/src/modules/<module>/`.
   <module>.repository.ts
   <module>.schema.ts
   <module>.routes.ts
-  <module>.controller.ts   # Optional request handling
+  <module>.controller.ts
   <module>.seed.ts
   <module>.service.ts
   <module>.types.ts
@@ -61,21 +68,24 @@ package may use `api/src/modules/<module>/`.
 | `<module>.provider.ts`   | Registration, declared dependencies, and public communication contracts |
 | `<module>.migration.ts`  | Owned tables, indexes, constraints, and schema upgrades                 |
 | `<module>.repository.ts` | Owned persistence queries and adapters                                  |
-| `<module>.routes.ts`     | Endpoint registration, schemas, middleware, and handler wiring          |
+| `<module>.routes.ts`     | Endpoint registration, schemas, middleware, and controller wiring       |
+| `<module>.controller.ts` | Required transport orchestration and service invocation                 |
 | `<module>.seed.ts`       | Repeatable defaults that preserve existing user data                    |
 | `<module>.service.ts`    | Use cases, business rules, authorization, and transaction decisions     |
 | `<module>.types.ts`      | Owned records, payloads, and public contracts                           |
 
-Keep request validation in `<module>.schema.ts` when the module accepts input. Add
-`<module>.domain.ts`, owner helpers, or tests only when needed. Migrations change structure. Seeds
-provide defaults. Routes wire controllers, or small service handlers when a controller is
-unnecessary. A module must not query or modify another module's owned tables directly. Use that
-owner's public contract for related data and validate referenced IDs through it.
+Keep request validation in `<module>.schema.ts`. Add `<module>.domain.ts`, owner helpers, or tests
+only when needed. Migrations change structure. Seeds provide defaults. Every route wires to the
+module controller, including small endpoints; the controller may stay thin but must call the service
+and map the transport result. A module must not query or modify another module's owned tables
+directly. Use that owner's public contract for related data and validate referenced IDs through it.
 
 Use DDD to define domain language, invariants, and transaction boundaries. Add entities, value
-objects, or aggregates when they clarify real domain behavior. Do not add empty files, nested layer
-scaffolds, inheritance factories, or wrappers to satisfy a template. Modules without persistence
-need no migration, repository, or seed placeholders.
+objects, or aggregates when they clarify real domain behavior. Do not add nested layer scaffolds,
+inheritance factories, or wrappers. Required canonical files must contain only the smallest honest
+owner-local implementation needed by the module; do not invent business behavior to fill them.
+Modules without persistence still keep the required migration, repository, and seed files, with an
+explicit minimal not-applicable export or comment.
 
 ## Routes and controllers
 
@@ -83,18 +93,25 @@ Keep `<module>.routes.ts` declarative: paths, methods, schemas, middleware, and 
 registration. Do not put SQL, business decisions, event processing, or long request handlers in
 routes.
 
-Add `<module>.controller.ts` when request handling needs orchestration or repeated transport
-mapping. The controller reads validated input and trusted request context, calls the service, and
-maps results or errors to the HTTP contract. Keep authorization decisions and business invariants in
-services. Controllers must not access repositories directly.
+Every backend module has `<module>.controller.ts`. It reads validated input and trusted request
+context, calls the service, and maps results or errors to the HTTP contract. Keep authorization
+decisions and business invariants in services. Controllers must not access repositories directly.
+Even a simple controller must be wired as the route handler; do not bypass it by wiring routes
+straight to services.
 
-Normal flow: route → controller → service → repository. For a small endpoint, route → service is
-sufficient. Do not add an empty controller layer. Cross-module service calls use injected provider
-contracts, not another module's controller or private service.
+Required flow: route → controller → service → repository. Cross-module service calls use injected
+provider contracts, not another module's controller or private service.
 
 ## Frontend layout
 
 Keep files together in `src/web/modules/<module>/` or `web/src/modules/<module>/`.
+
+Every frontend business module MUST contain every file in the canonical structure below, using the
+exact filenames. This applies to all agents and contributors. Do not omit a role because the current
+screen is small or does not use it yet. Keep non-applicable files minimal and explicit; do not add
+fake business behavior. Additional files are allowed only for concrete owner-local needs and must
+not replace or rename canonical files. A frontend module is not complete while a required file is
+missing or its public wiring is incomplete.
 
 ```text
 <module>/
@@ -111,7 +128,9 @@ Keep files together in `src/web/modules/<module>/` or `web/src/modules/<module>/
 ```
 
 The module owns its routes, API calls, query keys, state, validation, forms, lists, and workspace
-behavior. Forms, lists, and workspaces have distinct responsibilities. Do not disguise shared
+behavior. Forms, lists, and workspaces have distinct responsibilities. Wire the canonical provider
+and routes to the module's workspace, list, form, services, hooks, schema, and types as applicable.
+Keep required non-applicable files minimal and explicit. Do not disguise shared
 business implementations with aliases or wrappers. Add module-owned pages, details, reports, print
 views, or helper files when needed. Use an optional `<module>.controller.ts` or `.tsx` for complex
 UI orchestration. Keep route registration and view components clean. Do not duplicate hooks or

@@ -1,5 +1,13 @@
 # Governance audit — 2026-10-02
 
+## Strict module file contracts - 2026-10-05
+
+- Passed: authenticated MCP connection before source edits.
+- Passed: central code standard and workspace instructions now require every listed backend and frontend file.
+- Passed: backend controller is mandatory and route wiring must follow controller → service.
+- Partial: MCP remains advisory and its published snapshot predates this source change; remote consumers do not receive it until deployment.
+- Untested: automated structural linting and repository test suite were not run.
+
 ## Package reference cleanup - 2026-10-05
 
 - [x] Retrieve authenticated cloud governance.

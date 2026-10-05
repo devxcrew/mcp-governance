@@ -1,5 +1,14 @@
 # Current task
 
+## Strict module file contracts - 2026-10-05
+
+- [x] Require the canonical backend and frontend file sets in the central code standard.
+- [x] Make backend controllers mandatory and require route-to-controller-to-service wiring.
+- [x] Tell workspace and governance agents to treat structure and wiring deviations as review blockers.
+- [ ] Deploy the updated guidance and verify the published snapshot.
+
+Source guidance is updated locally. The connected MCP service still serves its 2026-10-03 snapshot.
+
 ## Package reference cleanup - 2026-10-05
 
 - [x] Retrieve authenticated cloud governance.

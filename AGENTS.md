@@ -26,11 +26,13 @@ Use events and queues only for real asynchronous needs. Keep contracts and handl
 Keep files below 700 lines when practical. Review files at 700–900 lines and split above 900 within
 the owner. Do not create empty roles, unnecessary layers, or speculative abstractions.
 
-Use `<module>.provider.ts` as the module registration and public communication boundary. Inject
-public provider contracts between modules. Keep private implementations inside their owner. Add
-`<module>.controller.ts` when request orchestration is needed. Keep routes limited to endpoint
-wiring. Frontend providers follow the same ownership rule. Use `.tsx` only when React rendering
-requires it.
+Every backend and frontend module must include every file and exact filename in
+`governance://code-standard`. Backend controllers are mandatory, and routes always wire through the
+controller before the service. Missing or renamed canonical files, direct route-to-service wiring,
+and incomplete public provider contracts block review. All agents must follow these module rules.
+Use `<module>.provider.ts` as the registration and public communication boundary. Inject public
+provider contracts between modules and keep private implementations inside their owner. Frontend
+providers follow the same ownership rule. Use `.tsx` only when React rendering requires it.
 
 ## Validation
 
