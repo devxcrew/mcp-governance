@@ -1,16 +1,17 @@
 # npm connection and publishing notes
 
-Verified on October 3, 2026. Check current npm requirements before the next release.
+Verified on October 5, 2026. Check current npm requirements before the next release.
 
 ## Packages and owners
 
-| Package                    | Source repository              | Verified version | Published content                                   |
-| -------------------------- | ------------------------------ | ---------------- | --------------------------------------------------- |
-| `@devxcrew/core-framework` | `D:\codexsun\shared\framework` | `0.1.7`          | Compiled ESM JavaScript and TypeScript declarations |
-| `@devxcrew/react-ui`       | `D:\codexsun\shared\ui`        | `0.1.7`          | TypeScript, TSX, and CSS for React bundlers         |
+| Package               | Source repository              | Verified version | Published content                                   |
+| --------------------- | ------------------------------ | ---------------- | --------------------------------------------------- |
+| `@devxcrew/framework` | `D:\codexsun\shared\framework` | `0.1.8`          | Compiled ESM JavaScript and TypeScript declarations |
+| `@devxcrew/ui`        | `D:\codexsun\shared\ui`        | `0.2.0`          | TypeScript, TSX, and CSS for React bundlers         |
 
 The npm account is `devxcrew`. GitHub repository names remain `framework` and `ui`.
-The npm package names differ from the repository names.
+The shorter npm names match their GitHub repository names.
+Old core-framework and react-ui releases remain available for existing consumers.
 
 UI requires a TypeScript-aware React bundler, such as Vite. React and React DOM are peer dependencies.
 Use supported public exports. Native Node cannot execute UI TSX exports directly.
@@ -90,8 +91,8 @@ Do not rely only on the browser success page or CLI success message.
 Check the registry, then install the packages in the consumer app.
 
 ```powershell
-npm view @devxcrew/core-framework version
-npm view @devxcrew/react-ui version
+npm view @devxcrew/framework version
+npm view @devxcrew/ui version
 ```
 
 For a specific release, use `npm view <package>@<version> version`.
@@ -104,7 +105,7 @@ Choose the intended versions for future releases.
 
 ```powershell
 Set-Location D:\codexsun\projects\cxsun
-npm install @devxcrew/core-framework@^0.1.7 @devxcrew/react-ui@^0.1.7
+npm install @devxcrew/framework@^0.1.7 @devxcrew/ui@^0.1.7
 npm ci
 npm run verify
 ```
@@ -113,9 +114,9 @@ Project manifests use npm version ranges. Project lockfiles record registry tarb
 Remove old package imports and obsolete sibling build hooks when migrating an app.
 Do not use `file:` dependencies for these packages in project release manifests.
 
-Import UI styles through `@devxcrew/react-ui/styles`.
+Import UI styles through `@devxcrew/ui/styles`.
 Keep Tailwind source scanning configured for the installed UI package.
-Cxsun's `src/web/styles.css` scans `../../node_modules/@devxcrew/react-ui/src`.
+Cxsun's `src/web/styles.css` scans `../../node_modules/@devxcrew/ui/src`.
 Adjust that relative path when the stylesheet location differs.
 
 ## Develop packages beside the app
@@ -151,7 +152,7 @@ That gallery exception does not apply to project release manifests.
 | App resolves sibling files after migration   | Install registry versions and review the manifest, lockfile, imports, and build hooks.                       |
 
 On October 3, `@devxcrew/framework` and `@devxcrew/ui` were temporarily unavailable after unpublishing.
-The owner selected `@devxcrew/core-framework` and `@devxcrew/react-ui` instead.
+The owner selected `@devxcrew/framework` and `@devxcrew/ui` instead.
 Both new names published successfully at `0.1.7`.
 See [npm's unpublishing rules](https://docs.npmjs.com/unpublishing-packages-from-the-registry/).
 

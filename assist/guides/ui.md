@@ -2,13 +2,13 @@
 
 ## Imports
 
-| Component or contract | Import path                                 |
-| --------------------- | ------------------------------------------- |
-| Button                | `@devxcrew/react-ui/components/button`      |
-| LoginPage             | `@devxcrew/react-ui/blocks/auth`            |
-| MainWorkspace         | `@devxcrew/react-ui/layouts/main-workspace` |
-| Shared styles         | `@devxcrew/react-ui/styles`                 |
-| Design system         | `@devxcrew/react-ui/design-system`          |
+| Component or contract | Import path                           |
+| --------------------- | ------------------------------------- |
+| Button                | `@devxcrew/ui/components/button`      |
+| LoginPage             | `@devxcrew/ui/blocks/auth`            |
+| MainWorkspace         | `@devxcrew/ui/layouts/main-workspace` |
+| Shared styles         | `@devxcrew/ui/styles`                 |
+| Design system         | `@devxcrew/ui/design-system`          |
 
 `MainWorkspace` composes `mdi-main`.
 

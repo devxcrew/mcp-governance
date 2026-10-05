@@ -54,9 +54,9 @@ for (const [name, path] of Object.entries(repositories)) {
     JSON.stringify({
       name:
         name === "framework"
-          ? "@devxcrew/core-framework"
+          ? "@devxcrew/framework"
           : name === "ui"
-            ? "@devxcrew/react-ui"
+            ? "@devxcrew/ui"
             : `@codexsun/${name}`,
       version: "0.1.0",
       scripts: { check: "verify" },
@@ -91,7 +91,7 @@ test("SDK client initializes and reads resources and repository/UI instructions"
     const resources = await client.listResources();
     assert.equal(resources.resources.length, 5);
     const guide = await client.readResource({ uri: "governance://ui" });
-    assert.match(String(guide.contents[0].text), /@devxcrew\/react-ui\/layouts\/main-workspace/);
+    assert.match(String(guide.contents[0].text), /@devxcrew\/ui\/layouts\/main-workspace/);
     const tools = await client.listTools();
     assert.equal(tools.tools.length, 4);
     assert(tools.tools.every((tool) => tool.annotations?.readOnlyHint));
@@ -151,7 +151,7 @@ test("client returns matching instructions and fails when the cloud is unavailab
   const originalFetch = globalThis.fetch;
   globalThis.fetch = (input, init) => originalFetch(config.url, init);
   try {
-    assert.equal((await connectGovernance(env)).repository.name, "@devxcrew/core-framework");
+    assert.equal((await connectGovernance(env)).repository.name, "@devxcrew/framework");
     globalThis.fetch = async () => {
       throw new Error("Cloud unavailable.");
     };

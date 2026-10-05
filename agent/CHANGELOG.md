@@ -2,11 +2,23 @@
 
 ## Version State
 
-Current version: 0.1.4
+Current version: 0.1.5
 
-Release tag: v-0.1.4
+Release tag: v-0.1.5
 
-Changelog label: v 0.1.4
+Changelog label: v 0.1.5
+
+## v-0.1.5
+
+### [v 0.1.5] 2026-10-05 7:58 am - Adopt Framework and UI package names
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Use the public @devxcrew/framework and @devxcrew/ui packages. Preserve module ownership and existing behavior.
 
 ## v-0.1.4
 
@@ -274,3 +286,11 @@ Changelog label: v 0.1.4
 ### 0.1.4 inventory completion
 
 Include Veyrezio in the 14-repository governance snapshot. Verify local cloud preparation without deploying.
+
+### Package migration verification - 2026-10-05
+
+- Passed 9 tests, owner verification and applicable package checks.
+- All six application lockfiles use exact Framework 0.1.8 and UI 0.2.0 registry artifacts.
+- Two fresh registry apps passed 44 tests each, live SQLite and cross-app session denial.
+- The gallery passed source and isolated registry verification with bundle budgets.
+- Browser, real SMTP and production deployment acceptance remain separate.

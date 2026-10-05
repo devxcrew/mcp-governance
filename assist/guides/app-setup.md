@@ -155,7 +155,7 @@ Cloud consumers receive discovery changes only after the governance release is d
 
 ## Published shared packages
 
-Project applications consume `@devxcrew/core-framework` and `@devxcrew/react-ui` from npm. Do not add `file:` dependencies to project manifests.
+Project applications consume `@devxcrew/framework` and `@devxcrew/ui` from npm. Do not add `file:` dependencies to project manifests.
 Shared repositories remain development owners. Cxsun can explicitly install local packed snapshots with `npm run packages:local` and restore npm packages with `npm run packages:npm`.
 UIUX remains the separate local source gallery. UI exports require a TypeScript-aware React bundler. Framework publishes compiled JavaScript and declarations.
 

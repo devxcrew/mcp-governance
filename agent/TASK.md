@@ -1,5 +1,13 @@
 # Current task
 
+## Package migration - 2026-10-05
+
+- [x] Retrieve authenticated cloud governance before this migration.
+- [x] Update active package imports, helpers and manifests to the shorter public names.
+- [x] Verify nine source tests, formatting, Worker smoke and deployment dry run.
+- [x] Prepare new-name source metadata. Cloud deployment remains deferred.
+- [x] Commit and push the reviewed migration.
+
 ## Completion wave - 2026-10-04
 
 Source 0.1.4 and its formatting repair are committed. Ubuntu and Windows CI passed. The live deployment still returns the 2026-10-03 snapshot. Source guidance is prepared. Cloud freshness acceptance is deferred with deployment.
