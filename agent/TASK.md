@@ -14,7 +14,6 @@ its corrected files were committed to GitHub through the API because Git checkou
 was unavailable. Intergrid's corrected files were also committed through the API after Git push
 authentication failed. Rebuild and redeploy the snapshot after app source updates.
 
-
 ## Strict module file contracts - 2026-10-05
 
 - [x] Require the canonical backend and frontend file sets in the central code standard.
