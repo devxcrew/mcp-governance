@@ -1,5 +1,14 @@
 # Governance audit — 2026-10-02
 
+## Three development commands - 2026-10-05
+
+- Passed: the five managed project apps use identical development scripts and launcher code.
+- Passed: each launcher retrieves live cloud governance before it starts a child process.
+- Passed: the API server skips Vite and frontend responses in API-only mode.
+- Passed: all five app typechecks and JavaScript syntax checks.
+- Pending: publish the command contract and check the live cloud snapshot.
+- Not run: interactive development server modes. This task did not request runtime tests.
+
 ## Managed inventory change - Intergrid - 2026-10-05
 
 - Scope: remove Intergrid from managed governance; retain five project apps and seven shared, add-on, and devkit repositories.
@@ -300,3 +309,27 @@ The baseline is recorded in projects/cxsun/agent/DEPENDENCY-BASELINE.json.
 Verification, cloud tests and cloud drift passed. Live snapshot matches 0.1.10 and all 12 repository connections passed.
 
 Authenticated live MCP verification passed. See the [alignment audit](D:/codexsun/projects/cxsun/agent/SHARED-ALIGNMENT.md). Version numbers remain unchanged. No release delivery was performed by this audit.
+
+## Reserved-port restart verification - 2026-10-05
+
+Development preflight uses `DEVXCREW_DEV_PORT_POLICY=restart`. Each app verifies
+its configured host, reserved port and URL, validates listener ownership, stops
+the existing app supervisor and descendants, waits for port release, then starts
+on the same port. Unrelated listeners are preserved. Production does not reclaim.
+
+Two actual starts passed for all five project apps on ports 5173 through 5177.
+Every second start replaced the listener PID and returned readiness 200 on the
+same port. Verification processes were stopped after each check.
+Tools release checks passed with 32 tests, including foreign-listener protection.
+Governance verification, cloud protocol checks and deployment dry run passed.
+
+Evidence: projects/cxsun/.cache/port-restart-results.json and port-restart-check.log,
+shared/tools/.cache-port-check.log, shared/mcp-governance/.cache-port-verify.log
+and .cache-port-cloud-check.log. App environment examples carry the explicit policy,
+so the currently published Tools 0.1.8 works without a sibling checkout.
+Tools source now defaults to restart; its next npm release remains separate.
+
+Live governance deployment and authenticated app-setup retrieval passed.
+Cloud drift confirms the deployed snapshot matches the prepared snapshot.
+All five apps passed strict MCP verification after deployment.
+See [preflight proof](D:/codexsun/projects/cxsun/agent/PORT-PREFLIGHT.md).

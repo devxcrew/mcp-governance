@@ -2,13 +2,35 @@
 
 ## Version State
 
-Current version: 0.1.10
+Current version: 0.1.11
 
-Release tag: v-0.1.10
+Release tag: v-0.1.11
 
-Changelog label: v 0.1.10
+Changelog label: v 0.1.11
+
+## v-0.1.11
+
+### [v 0.1.11] 2026-10-05 2:50 pm - Define three development commands
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Publish the common dev, dev:api, and dev:web contract for project apps.
 
 ## v-0.1.10
+
+### [v 0.1.10] 2026-10-05 2:39 pm - Require verified reserved-port development restart
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Wire restart policy, verify consecutive starts for five apps and require the same preflight lifecycle in new-app governance.
 
 ### [v 0.1.10] 2026-10-05 12:51 pm - Normalize audit record formatting
 

@@ -117,10 +117,39 @@ not exist.
 7. Verify routes, permissions, session isolation, restart behavior, and production guards.
 8. Record evidence and incomplete capabilities in TASK and AUDIT.
 
-Development preflight may reclaim only verified listeners belonging to the same app. Provide
-check/start/stop through supported Tools commands or a small app-owned adapter. Production must fail
-on port conflicts without terminating another process. Do not claim unavailable `preflight --stop`,
-governed CLI, or template-generation commands work.
+Every new app must configure `DEVXCREW_DEV_PORT_POLICY=restart` in `.env.example`
+and its local development environment. Run `npm run dev` through the authenticated
+governance adapter and installed Tools `app:dev` preflight.
+
+Preflight verifies the app repository, configured host, reserved `APP_PORT` and
+matching `APP_URL`. If occupied, identify the listener and verify its process
+belongs to this app. Force-stop its app supervisor and descendants, wait for the
+port to become available, then start the app on that same host and port.
+Never choose the next available port. Never kill an unrelated listener by port alone.
+Validate every occupied endpoint before stopping any process.
+
+Verify two consecutive starts against each app's reserved port. The second start
+must replace the first listener, keep the URL unchanged and pass readiness.
+Verify that a foreign listener is preserved and startup fails with its owner PID.
+An explicit `DEVXCREW_DEV_PORT_POLICY=abort` may disable development reclaim.
+Production startup must fail on port conflicts without terminating another process.
+Use only supported Tools commands; do not invent `preflight --stop` commands.
+
+## Development commands
+
+Every project app exposes the same three commands:
+
+| Command           | Starts                           | Does not start                   |
+| ----------------- | -------------------------------- | -------------------------------- |
+| `npm run dev`     | The API and development frontend | —                                |
+| `npm run dev:api` | The API only                     | Vite or static frontend delivery |
+| `npm run dev:web` | The Vite frontend only           | The API                          |
+
+Each command retrieves live cloud guidance before it starts. A failed connection stops startup.
+The combined mode may use one server with Vite middleware. The API-only mode must skip that
+middleware and return 404 for frontend paths. The web-only mode must not start the API.
+For a single-port app, run one mode at a time on the reserved app port. Do not map a split mode
+back to `npm run dev`.
 
 This task creates a foundation only. Do not add business entities, APIs, workflows, or Frappe
 DocTypes. Do not create backend business code during a frontend-only phase. When business modules
