@@ -4,10 +4,13 @@
 
 - [x] Remove Veyrezio from the managed repository inventory.
 - [x] Keep the remaining 13 repositories under the same cloud-only module standard.
-- [ ] Verify, publish, and check the 13-repository cloud snapshot.
+- [x] Verify, publish, and check the 13-repository cloud snapshot.
 
 The previous Veyrezio connection work remains in historical records. It is outside the current
 managed inventory. Existing Cxsun and Platform module alignment is separate owner work.
+Governance 0.1.9 passed source checks and GitHub CI. The Worker snapshot contains five guides
+and 13 repositories. All 13 strict cloud connections passed; Veyrezio strict verification failed
+as expected because its repository metadata is absent. Cloud drift is aligned.
 
 ## Cloud-only governance and app connections - 2026-10-05
 

@@ -3,7 +3,11 @@
 ## Managed inventory change - 2026-10-05
 
 - Scope: remove Veyrezio from the cloud governance inventory; keep the other 13 repositories.
-- Pending: source checks, release commit, Worker deployment, cloud drift, and strict connection sweep.
+- Passed: 11 tests, typecheck, build, formatting, LF, version alignment, Worker smoke, and deployment dry run.
+- Passed: release 0.1.9 commit and GitHub CI; Worker deployed with five guides and 13 repositories.
+- Passed: all 13 managed identities passed strict cloud verification against the deployed snapshot.
+- Passed: Veyrezio strict verification failed on missing metadata, confirming its exclusion.
+- Passed: cloud drift reported aligned.
 - Existing Cxsun and Platform module structure gaps remain owner implementation work.
 
 ## Cloud-only governance and app connections - 2026-10-05
