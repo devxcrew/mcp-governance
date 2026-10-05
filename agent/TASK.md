@@ -6,7 +6,13 @@
 - [x] Keep app clients pinned to the authenticated cloud endpoint and retry transient failures.
 - [x] Make strict verification check repository metadata and required cloud resources and tools.
 - [x] Prepare all 14 repository metadata records for the Worker snapshot.
-- [ ] Deploy the Worker and verify every app connection against the published snapshot.
+- [x] Deploy the Worker and verify every app connection against the published snapshot.
+
+The cloud Worker was deployed as version 0.1.8. All 12 available local repositories passed
+`mcp:verify`. Veyrezio's direct cloud connector passed with its own app ID in a metadata mirror;
+its corrected files were committed to GitHub through the API because Git checkout authentication
+was unavailable. Intergrid's corrected files were also committed through the API after Git push
+authentication failed. Rebuild and redeploy the snapshot after app source updates.
 
 
 ## Strict module file contracts - 2026-10-05

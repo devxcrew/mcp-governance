@@ -5,7 +5,10 @@
 - Passed: authenticated cloud MCP connection before editing.
 - Passed: source snapshot prepared with five guides and 14 repository records.
 - Passed: client now retries transient network and HTTP 429/5xx failures and strict mode checks cloud metadata, resources, and tool discovery.
-- Pending: source verification, Worker deployment, and live per-app strict connections.
+- Passed: ten governance tests, typecheck, build, Worker smoke, and deployment dry run.
+- Passed: Worker version 0.1.8 deployed to `mcp.codexsun.com`; 12 local strict app checks passed.
+- Passed: Veyrezio's corrected direct connector passed a strict cloud check using APP_ID=veyrezio.
+- Pending: refresh the deployed repository metadata after all app commits, then check cloud drift.
 - Veyrezio checkout is unavailable locally; its current metadata was read from GitHub for snapshot preparation.
 
 
