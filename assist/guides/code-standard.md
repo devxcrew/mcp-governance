@@ -1,5 +1,23 @@
 # Code and module standards
 
+## Purpose and rule priority
+
+All coding agents and contributors must produce readable, predictable TypeScript that follows this
+standard across every managed application and shared owner. Inspect a similar implementation before
+editing. Keep domain terms consistent. Prefer clarity and consistency over clever or shorter code.
+
+Apply rules in this order:
+
+1. Direct user instructions for the current task.
+2. Authenticated live governance and applicable workspace or repository instructions.
+3. Existing owner conventions that comply with those instructions.
+4. General TypeScript practices.
+5. Personal coding preferences.
+
+An existing implementation is an example, not permission to repeat a governance violation. Correct
+violations within the requested scope. Do not rewrite unrelated working code for a preferred style.
+Instruction retrieval does not authorize commits, pushes, publication, or deployment.
+
 This deployed cloud resource is the shared instruction authority for every app. The matching
 repository files are release sources for governance maintainers only. A local MCP listener is for
 protocol development; app agents must connect to `https://mcp.codexsun.com/mcp` and stop if the
@@ -150,6 +168,138 @@ database migrations or server repositories.
 Use shared UI through public exports. Keep business fields and interactions in the frontend owner.
 Frontend and backend may share intentional public data contracts, but not private implementations or
 server code. Server validation and authorization remain authoritative.
+
+## TypeScript readability and consistency
+
+### File and declaration order
+
+Use this order when the file needs each role:
+
+```text
+Imports
+Owned types and interfaces
+Constants
+Exported provider, class, function, or React component
+Supporting implementation and private helpers
+```
+
+Keep public entry points near the top and implementation helpers below them. Put reusable module
+contracts in `<module>.types.ts` and request schemas in `<module>.schema.ts`. Keep small private
+implementation types near their implementation. Do not add section comments or empty declarations
+only to reproduce this order.
+
+### Classes, factories, and constructors
+
+Keep existing provider factories and functional React patterns. Use a class when related operations
+share meaningful state, dependencies, or lifecycle. Use functions for pure transformations,
+calculations, formatting, and small utilities. Dependency injection also works with factories.
+Do not convert working factories into classes merely to satisfy a preferred style.
+
+When a class is appropriate, order members as follows:
+
+```text
+Properties
+Constructor
+Public methods
+Protected methods, only when required by an existing extension contract
+Private methods
+```
+
+Constructors initialize dependencies and state. Keep network requests, database mutations, seeds,
+and business operations outside constructors. Run asynchronous startup through the provider's
+declared lifecycle. Do not introduce inheritance or protected methods without a concrete need.
+
+### Function and method responsibilities
+
+Each function or method has one clear purpose. A service use case may coordinate the steps needed
+for one business operation. Extract a helper when a separate responsibility or repeated operation
+makes the code clearer. Keep helpers in their owner. Avoid excessive chaining, nested functions,
+one-line business decisions, generic CRUD engines, and speculative factories.
+
+Use early returns or explicit guard clauses to reduce nesting. Use a short ternary only when its
+meaning is immediately clear. Prefer ordinary conditions for business rules. Do not create empty
+base services, managers, processors, or helper classes.
+
+### Names and types
+
+- Use PascalCase for classes, interfaces, types, and React components.
+- Use camelCase for functions, methods, variables, and parameters. React hooks start with `use`.
+- Use UPPER_SNAKE_CASE for fixed shared constants. Use camelCase for local calculated values.
+- Use kebab-case module names and the exact canonical dotted filenames defined above.
+- Use `.tsx` for React rendering files and `.ts` for contracts, schemas, services, and ordinary providers.
+- Use descriptive domain names. Short names are acceptable only in a small, obvious scope.
+- Declare public inputs and output contracts explicitly, including asynchronous return behavior.
+- Infer internal values when their types are clear. Use schema-derived input and output types.
+- Use `unknown` for untrusted values, then narrow or parse them. Avoid unsafe casts and non-null assertions.
+- Use `any` only at an unavoidable interoperability boundary with a documented reason and a narrow adapter.
+- Use unions and simple generics when they clarify a real contract. Avoid conditional-type complexity without need.
+- Mark dependencies and immutable fields `readonly` when the contract permits it.
+
+Do not rename existing public exports or files outside the task merely to normalize spelling.
+Canonical module names and filenames remain mandatory for new or changed modules.
+
+### Imports and package boundaries
+
+Group imports as platform or Node imports, external public packages, module public contracts, and
+owner-local implementations. Use `import type` for type-only dependencies. Follow existing ESM
+resolution: backend Node TypeScript uses the repository's `.js` import convention; frontend imports
+follow its bundler configuration. Do not add decorators, NestJS, or another framework for style.
+
+Consume intentional package exports and injected module contracts. Avoid deep imports into private
+package or sibling-module implementations. Avoid broad barrel imports that create cycles. Use
+aliases only when they resolve a real naming conflict or follow repository configuration.
+
+### Errors, authorization, and persistence
+
+Give errors stable codes and safe messages that explain the failure. Handle, translate, or propagate
+errors deliberately. Do not silently ignore a failure or report success after a failed operation.
+Do not expose credentials, internal database details, or sensitive identifiers in errors or logs.
+
+Routes declare endpoints and schemas. Required controllers map parsed input and trusted context to
+services. Services enforce authorization, invariants, and transaction decisions. Repositories own
+parameterized persistence queries and persistence mapping. Repositories do not implement HTTP
+responses or cross-module business decisions. Database connections remain business-neutral.
+
+Platform owns identity, sessions, RBAC, and tenancy. Use its installed public contracts and safe
+errors. Do not recreate a local identity engine from generic user-service examples. Database
+constraints remain necessary when service checks cannot prevent concurrent invalid writes.
+
+### Formatting and comments
+
+Use the owning repository's Prettier, ESLint, and TypeScript configuration. Let the formatter decide
+indentation, quotes, trailing commas, line breaks, and semicolons. Use multiline calls when they
+improve readability; do not force every short call across multiple lines. Keep source files in LF.
+
+Comments explain reasons, invariants, ownership, or a non-obvious tradeoff. Do not narrate obvious
+code or add Properties/Public methods/Private methods comments to every class. Required
+non-applicable canonical files must state the owning capability or public package responsibility.
+
+### Agent workflow and completion review
+
+Before coding, identify the owner, read its records, retrieve live governance, and inspect a similar
+compliant implementation. Reuse its structure while keeping each module's business behavior owned.
+Introduce a new pattern only when the existing contract cannot meet a concrete requirement.
+
+Application startup follows the declared setup and development command contract. Preserve the app's
+identity, port, private database paths, and portal session scopes. Use declared provider dependencies
+and lifecycle hooks. Do not put business initialization in the composition root or bypass startup checks.
+
+Before completing a task, agents must review these items and correct violations within the task:
+
+- Every required canonical file exists with its exact name and clear ownership.
+- Providers, routes, controllers, services, and repositories follow their required boundaries.
+- Frontend rendering, hooks, API services, forms, and schemas stay in their frontend owner.
+- Public contracts are typed, imports are intentional, and dependencies are acyclic.
+- Each operation has a clear purpose, predictable names, simple control flow, and safe errors.
+- Constructors and shared infrastructure contain no business operations.
+- Validation, authorization, persistence constraints, and trusted scope cover the changed path.
+- The code follows the repository formatter and a compliant owner example.
+- Checks cover the actual changed behavior. Tests prove outcomes, not only copied implementation details.
+- TASK and AUDIT records distinguish passed, failed, partial, blocked, and untested work.
+
+Missing canonical files, controller bypasses, private sibling imports, unsafe input, or false
+verification claims block completion. Document unavailable acceptance evidence explicitly. Never
+claim full browser, identity, or production acceptance from compilation alone.
 
 ## Resource routes, URL state, and breadcrumbs
 

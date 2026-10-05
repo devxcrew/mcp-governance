@@ -1,5 +1,36 @@
 # Governance audit — 2026-10-02
 
+## Consistent TypeScript agent coding - 2026-10-05
+
+- Passed: authenticated MCP retrieval before edits.
+- Passed: supplied standard revised for current module ownership, canonical filenames, provider factories, React, and Platform public contracts.
+- Passed: direct user instructions and live governance take priority over conflicting legacy examples.
+- Passed: npm run verify, including 11 tests, type checks, build, version alignment, and LF checks.
+- Passed: cloud:check, including Worker protocol smoke and deployment dry run.
+- Passed: governance 0.1.12 deployed as Worker version 34475f4a-88d3-43e5-bf8f-0633985c8cd9.
+- Passed: Cxsun, Billing, CRM, QCafe, and Ecommerce strict connections received the exact source coding standard.
+- Passed: cloud:drift reports aligned for snapshot 2026-10-05T11:52:12.279Z.
+- Scope: agent guidance changes. This release does not refactor existing application business code or add architectural lint rules.
+
+## Five-app foundation review - 2026-10-05
+
+Reviewed Cxsun, Billing, CRM, QCafe, and Ecommerce against current source and authenticated cloud guidance.
+
+- Passed: all five strict MCP connections.
+- Passed: identical direct dependency versions and complete canonical backend and frontend identity file sets.
+- Passed: routes call controllers and services before the public Platform provider.
+- Passed: source feature parity after accounting for application names, IDs, databases, and session cookie scopes.
+- Passed: matching login portals, identity resources, account settings, recovery, invitation, database, and backup implementations.
+- Passed: all five lint, type, maintenance, and source test checks.
+- Passed: Cxsun and QCafe full verification. Billing, CRM, and Ecommerce build and compiled identity checks passed on sequential retry.
+- Finding: Billing, CRM, QCafe, and Ecommerce display malformed separator text in src/api/index.ts:137.
+- Scope: Cxsun's extra package-development and consumer-check scripts are absent from the derived apps.
+- Untested: full interactive browser coverage, real SMTP delivery, populated database upgrades, and deployed production acceptance.
+
+Concurrent Billing, CRM, and Ecommerce builds stalled during Vite transformation. Only review-owned build processes were stopped.
+Sequential retries preserve the original logs in each app's .cache/governance-parity-review.log.
+Retry evidence is in .cache/governance-parity-build-retry.log. This review did not change application implementations.
+
 ## Three development commands - 2026-10-05
 
 - Passed: the five managed project apps use identical development scripts and launcher code.

@@ -1,5 +1,13 @@
 # mcp-governance agent notes
 
+## Agent coding discipline
+
+Follow the TypeScript readability and agent workflow sections in live `governance://code-standard`.
+Inspect a compliant owner example before edits. Keep typed public contracts, predictable declaration
+order, simple control flow, safe errors, and repository formatting. Preserve valid provider factories.
+Use classes for meaningful state or lifecycle. Keep constructors free of business operations.
+Governance takes priority over conflicting legacy patterns. Review boundaries and record real checks.
+
 Own central developer guidance, read-only MCP resources, client connection, and workspace
 maintenance routing.
 

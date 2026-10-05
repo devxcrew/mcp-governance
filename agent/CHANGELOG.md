@@ -2,11 +2,28 @@
 
 ## Version State
 
-Current version: 0.1.11
+Current version: 0.1.12
 
-Release tag: v-0.1.11
+Release tag: v-0.1.12
 
-Changelog label: v 0.1.11
+Changelog label: v 0.1.12
+
+## v-0.1.12
+
+### [v 0.1.12] 2026-10-05 5:20 pm - Define consistent TypeScript agent coding
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Adapt the supplied TypeScript standard to mandatory module files, provider contracts, Platform ownership, repository formatting, and agent review requirements.
+- Require consistent naming, declaration order, public types, safe errors, repository formatting, and agent completion review in every managed app.
+- Align workspace and governance agent instructions with the revised live standard.
+- Source verification passed 11 tests. Worker protocol checks and deployment preparation passed.
+- Cxsun, Billing, CRM, QCafe, and Ecommerce retrieved the exact revised resource through strict authenticated MCP.
+- Cloud governance 0.1.12 is available at https://mcp.codexsun.com/mcp. Architectural rules remain agent and review requirements.
 
 ## v-0.1.11
 

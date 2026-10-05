@@ -1,5 +1,29 @@
 # Current task
 
+## Consistent TypeScript agent coding - 2026-10-05
+
+- [x] Read the supplied standard and retrieve authenticated live governance.
+- [x] Adapt declaration order, naming, types, control flow, errors, formatting, and agent review rules.
+- [x] Preserve mandatory module files, controller wiring, provider contracts, and Platform identity ownership.
+- [x] Align workspace and governance agent instructions.
+- [x] Verify and publish the updated coding resource as governance 0.1.12.
+- [x] Confirm all five project apps retrieve the exact revised standard.
+- [ ] Commit and push the prepared 0.1.12 coding-standard release.
+- [ ] Verify GitHub CI and final cloud availability after delivery.
+
+Source verification passed 11 tests. Cloud checks and deployment passed. All five strict app
+connections matched the source coding resource and snapshot 2026-10-05T11:52:12.279Z. Cloud drift is aligned.
+
+## Five-app foundation review - 2026-10-05
+
+- [x] Verify authenticated governance connections for all five managed project apps.
+- [x] Compare source files, shared dependencies, feature wiring, and canonical module files with Cxsun.
+- [x] Verify lint, types, and source tests for all five apps.
+- [x] Verify builds and compiled identity checks for all five apps.
+
+All five apps have the same identity foundation. Application business features remain separate work.
+The four derived apps have malformed startup-log separator text. Full browser, SMTP, and production acceptance remain open.
+
 ## Three development commands - 2026-10-05
 
 - [x] Give Cxsun, Billing, CRM, QCafe, and Ecommerce the same `dev`, `dev:api`, and `dev:web` scripts.
