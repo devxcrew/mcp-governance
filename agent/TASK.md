@@ -12,7 +12,8 @@ The cloud Worker was deployed as version 0.1.8. All 12 available local repositor
 `mcp:verify`. Veyrezio's direct cloud connector passed with its own app ID in a metadata mirror;
 its corrected files were committed to GitHub through the API because Git checkout authentication
 was unavailable. Intergrid's corrected files were also committed through the API after Git push
-authentication failed. Rebuild and redeploy the snapshot after app source updates.
+authentication failed. The final app source snapshot was rebuilt and deployed. All 14 strict
+connection checks returned the same deployed snapshot. GitHub checks passed for all 14 repositories.
 
 ## Strict module file contracts - 2026-10-05
 

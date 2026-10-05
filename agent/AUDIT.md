@@ -8,7 +8,9 @@
 - Passed: ten governance tests, typecheck, build, Worker smoke, and deployment dry run.
 - Passed: Worker version 0.1.8 deployed to `mcp.codexsun.com`; 12 local strict app checks passed.
 - Passed: Veyrezio's corrected direct connector passed a strict cloud check using APP_ID=veyrezio.
-- Pending: refresh the deployed repository metadata after all app commits, then check cloud drift.
+- Passed: deployed repository metadata was refreshed after app commits; `cloud:drift` reported aligned.
+- Passed: all 14 strict connection checks returned the final snapshot; GitHub checks passed for all 14 repositories.
+- Remaining implementation gap: Cxsun's identity UI and Platform identity submodules lack some canonical owner files. Guidance is published, but those existing modules still need owner-led alignment.
 - Veyrezio checkout is unavailable locally; its current metadata was read from GitHub for snapshot preparation.
 
 ## Strict module file contracts - 2026-10-05
