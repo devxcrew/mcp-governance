@@ -2,11 +2,23 @@
 
 ## Version State
 
-Current version: 0.1.9
+Current version: 0.1.10
 
-Release tag: v-0.1.9
+Release tag: v-0.1.10
 
-Changelog label: v 0.1.9
+Changelog label: v 0.1.10
+
+## v-0.1.10
+
+### [v 0.1.10] 2026-10-05 11:21 am - Remove Intergrid from managed governance
+
+#### Database Changes
+
+- Database update: No (manual).
+
+#### App Codebase Changes
+
+- Publish the 12-repository cloud inventory and compare the five remaining apps with Cxsun.
 
 ## v-0.1.9
 

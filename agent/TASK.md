@@ -1,5 +1,15 @@
 # Current task
 
+## Remove Intergrid from managed governance - 2026-10-05
+
+- [x] Remove Intergrid from the managed repository inventory and active snapshot source.
+- [x] Keep the five remaining project apps under the same cloud-only module standard.
+- [ ] Verify, publish, and check the 12-repository cloud snapshot.
+
+Historical Intergrid records remain for traceability. The Intergrid repository is outside this
+managed governance scope. The current app comparison covers Cxsun, Billing, CRM, QCafe, and
+Ecommerce.
+
 ## Remove Veyrezio from managed governance - 2026-10-05
 
 - [x] Remove Veyrezio from the managed repository inventory.

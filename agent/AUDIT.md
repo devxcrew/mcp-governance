@@ -1,5 +1,11 @@
 # Governance audit — 2026-10-02
 
+## Managed inventory change - Intergrid - 2026-10-05
+
+- Scope: remove Intergrid from managed governance; retain five project apps and seven shared, add-on, and devkit repositories.
+- Pending: source checks, release commit, Worker deployment, drift, and strict connection sweep.
+- Current comparison: the four starter apps share Cxsun's public visual language but use preview sessions and lack its authenticated identity foundation.
+
 ## Managed inventory change - 2026-10-05
 
 - Scope: remove Veyrezio from the cloud governance inventory; keep the other 13 repositories.

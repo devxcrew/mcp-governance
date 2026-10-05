@@ -4,7 +4,6 @@ export const repositories = {
   crm: "projects/crm",
   qcafe: "projects/qcafe",
   ecommerce: "projects/ecommerce",
-  intergrid: "projects/intergrid",
   framework: "shared/framework",
   platform: "shared/platform",
   email: "addons/email",

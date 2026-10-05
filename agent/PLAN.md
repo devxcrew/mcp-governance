@@ -1,5 +1,11 @@
 # MCP Governance foundation plan
 
+## Current five-app comparison
+
+Publish a 12-repository cloud snapshot without Intergrid or Veyrezio. Verify strict connections
+for Cxsun, Billing, CRM, QCafe, Ecommerce, and all managed shared owners. Compare the five apps
+against Cxsun's current foundation and keep implementation differences visible in the audit.
+
 ## Current managed inventory
 
 Publish the 13-repository cloud snapshot without Veyrezio. Verify that strict connections for
