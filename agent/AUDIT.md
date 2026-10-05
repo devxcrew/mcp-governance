@@ -10,6 +10,10 @@
 - Passed: governance 0.1.12 deployed as Worker version 34475f4a-88d3-43e5-bf8f-0633985c8cd9.
 - Passed: Cxsun, Billing, CRM, QCafe, and Ecommerce strict connections received the exact source coding standard.
 - Passed: cloud:drift reports aligned for snapshot 2026-10-05T11:52:12.279Z.
+- Delivery: source commit a326a7d pushed to origin/main for governance 0.1.12.
+- Delivery: GitHub run 37307098098 passed on Ubuntu and Windows.
+- Delivery: cloud redeployed as Worker ea22fcfd-e41e-4af6-b4b7-b6bb21451a8b.
+- Delivery: all five strict app connections matched the source at snapshot 2026-10-05T12:05:03.954Z; cloud drift is aligned.
 - Scope: agent guidance changes. This release does not refactor existing application business code or add architectural lint rules.
 
 ## Five-app foundation review - 2026-10-05

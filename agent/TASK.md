@@ -8,8 +8,8 @@
 - [x] Align workspace and governance agent instructions.
 - [x] Verify and publish the updated coding resource as governance 0.1.12.
 - [x] Confirm all five project apps retrieve the exact revised standard.
-- [ ] Commit and push the prepared 0.1.12 coding-standard release.
-- [ ] Verify GitHub CI and final cloud availability after delivery.
+- [x] Commit and push the prepared 0.1.12 coding-standard release.
+- [x] Verify GitHub CI and final cloud availability after delivery.
 
 Source verification passed 11 tests. Cloud checks and deployment passed. All five strict app
 connections matched the source coding resource and snapshot 2026-10-05T11:52:12.279Z. Cloud drift is aligned.

@@ -24,6 +24,7 @@ Changelog label: v 0.1.12
 - Source verification passed 11 tests. Worker protocol checks and deployment preparation passed.
 - Cxsun, Billing, CRM, QCafe, and Ecommerce retrieved the exact revised resource through strict authenticated MCP.
 - Cloud governance 0.1.12 is available at https://mcp.codexsun.com/mcp. Architectural rules remain agent and review requirements.
+- Released source commit a326a7d to origin/main. GitHub CI passed on Ubuntu and Windows; final cloud drift and all five app connections passed.
 
 ## v-0.1.11
 
